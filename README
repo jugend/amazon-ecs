@@ -81,6 +81,10 @@ http://docs.amazonwebservices.com/AWSEcommerceService/2006-09-13/
 To get a sample of Amazon REST response XML output, use AWSZone.com scratch pad:
 http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
+== SOURCE CODES
+
+* http://github.com/jugend/amazon-ecs/tree/master
+
 == LINKS
 
 * http://amazon-ecs.rubyforge.org
