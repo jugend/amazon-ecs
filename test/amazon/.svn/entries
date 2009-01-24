@@ -1,0 +1,41 @@
+8
+
+dir
+16
+svn+ssh://jugend@rubyforge.org/var/svn/amazon-ecs/trunk/test/amazon
+svn+ssh://jugend@rubyforge.org/var/svn/amazon-ecs
+
+
+
+2007-02-08T17:47:33.279966Z
+10
+jugend
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+044527e3-20b6-42a0-b3ef-db3f39438df5
+
+ecs_test.rb
+file
+
+
+
+
+2007-05-18T02:01:08.000000Z
+71ff6ee8dcafa0f2f05440b4272e3ddf
+2007-02-08T17:47:33.279966Z
+10
+jugend
+has-props
+
