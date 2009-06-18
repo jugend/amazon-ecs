@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class Amazon::EcsTest < Test::Unit::TestCase
 
-  AWS_ACCESS_KEY_ID = '1ZD53WRGR730ZCVWBSG2'
+  AWS_ACCESS_KEY_ID = ''
   raise "Please specify set your AWS_ACCESS_KEY_ID" if AWS_ACCESS_KEY_ID.empty?
   
   Amazon::Ecs.configure do |options|

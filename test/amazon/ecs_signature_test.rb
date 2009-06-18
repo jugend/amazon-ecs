@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class Amazon::EcsTest < Test::Unit::TestCase
 
-  AWS_ACCESS_KEY_ID = '1234'
-  AWS_SECRET_KEY = 'abcdef'
+  AWS_ACCESS_KEY_ID = ''
+  AWS_SECRET_KEY = ''
   
   raise "Please specify set your AWS_ACCESS_KEY_ID" if AWS_ACCESS_KEY_ID.empty?
   raise "Please specify set your AWS_SECRET_KEY" if AWS_SECRET_KEY.empty?
