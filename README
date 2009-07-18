@@ -23,7 +23,17 @@ Version: 0.5.4
     require 'amazon/ecs'
 	
     # set the default options; options will be camelized and converted to REST request parameters.
-    Amazon::Ecs.options = {:aWS_access_key_id => [your developer token]}
+    Amazon::Ecs.options = {:aWS_access_key_id => [your access key]}
+
+    # to generate signed requests include your secret key:
+    Amazon::Ecs.options = {:aWS_access_key_id => [your developer token], :aWS_secret_key => [your secret access key]}
+
+    # alternatively,
+    Amazon::Ecs.configure do |options|
+        options[:aWS_access_key_id] = [your access key]
+        options[:aWS_secret_key] = [you secret key]
+    end
+	
 
     # options provided on method call will merge with the default options
     res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
