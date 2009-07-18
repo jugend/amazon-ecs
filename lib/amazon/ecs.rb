@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2006 Herryanto Siatono, Pluit Solutions
+# Copyright (c) 2009 Herryanto Siatono, Pluit Solutions
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -24,7 +24,7 @@
 require 'net/http'
 require 'hpricot'
 require 'cgi'
-require 'openssl'
+require 'hmac-sha2'
 require 'base64'
 
 module Amazon
@@ -39,7 +39,11 @@ module Amazon
         :fr => 'http://webservices.amazon.fr/onca/xml?'
     }
     
-    @@options = {}
+    @@options = {
+      :version => "2009-01-06",
+      :service => "AWSECommerceService"
+    }
+    
     @@debug = false
 
     # Default search options
@@ -96,10 +100,8 @@ module Amazon
       opts = self.options.merge(opts) if self.options
       
       # Include other required options
-      opts['Timestamp'] = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
-      opts['Version'] = "2009-01-06"
-      opts['Service'] = "AWSECommerceService"
-      
+      opts[:timestamp] = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
+
       request_url = prepare_url(opts)
       log "Request URL: #{request_url}"
       
@@ -214,10 +216,7 @@ module Amazon
         
         signature = ''
         unless secret_key.nil?
-          request_to_sign="GET
-#{request_host}
-/onca/xml
-#{qs}"
+          request_to_sign="GET\n#{request_host}\n/onca/xml\n#{qs}"
           signature = "&Signature=#{sign_request(request_to_sign, secret_key)}"
         end
 
@@ -230,8 +229,7 @@ module Amazon
       
       def self.sign_request(url, key)
         return nil if key.nil?
-        sha_digest=OpenSSL::Digest::Digest.new('sha256')
-        signature = URI.escape( Base64.encode64( OpenSSL::HMAC.digest(sha_digest, key, url) ).strip, Regexp.new("[+=]") )
+        signature = URI.escape( Base64.encode64( HMAC::SHA256.digest(key, url) ).strip, Regexp.new("[+=]") )
         return signature
       end
       

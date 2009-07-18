@@ -2,21 +2,29 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class Amazon::EcsTest < Test::Unit::TestCase
 
-  AWS_ACCESS_KEY_ID = ''
+  AWS_ACCESS_KEY_ID = '0XQXXC6YV2C85DX1BF02'
+  AWS_SECRET_KEY = 'W9kzFCXi9Q0dQMizKDzFFbKgxKop5z4gLZsh6AlX'
+  
   raise "Please specify set your AWS_ACCESS_KEY_ID" if AWS_ACCESS_KEY_ID.empty?
+  raise "Please specify set your AWS_SECRET_KEY" if AWS_SECRET_KEY.empty?
   
   Amazon::Ecs.configure do |options|
     options[:response_group] = 'Large'
     options[:aWS_access_key_id] = AWS_ACCESS_KEY_ID
+    options[:aWS_secret_key] = AWS_SECRET_KEY
   end
 
   ## Test item_search
 
   def test_item_search
     resp = Amazon::Ecs.item_search('ruby')
+    
     assert(resp.is_valid_request?)
     assert(resp.total_results >= 3600)
     assert(resp.total_pages >= 360)
+    
+    signature_elements = (resp.doc/"arguments/argument").select {|ele| ele.attributes['name'] == 'Signature' }.length
+    assert(signature_elements == 1)
   end
 
   def test_item_search_with_paging

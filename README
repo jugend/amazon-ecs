@@ -1,8 +1,8 @@
 == amazon-ecs
 
-Generic Amazon E-commerce REST API using Hpricot with configurable 
+Generic Amazon E-commerce REST or Product Advertising API using Hpricot with configurable 
 default options and method call options. Uses Response and 
-Element wrapper classes for easy access to REST XML output. It supports ECS 4.0.
+Element wrapper classes for easy access to REST XML output.
 
 It is generic, so you can easily extend <tt>Amazon::Ecs</tt> to support 
 other not implemented REST operations; and it is also generic because it just wraps around
@@ -12,7 +12,7 @@ If in the future, there is a change in REST XML output structure,
 no changes will be required on <tt>amazon-ecs</tt> library, 
 instead you just need to change the element path.
 
-Version: 0.5.4
+Version: 0.5.5
 
 == INSTALLATION
 
@@ -33,7 +33,6 @@ Version: 0.5.4
         options[:aWS_access_key_id] = [your access key]
         options[:aWS_secret_key] = [you secret key]
     end
-	
 
     # options provided on method call will merge with the default options
     res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
@@ -97,11 +96,16 @@ http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 == LINKS
 
+* http://github.com/jugend/amazon-ecs
 * http://amazon-ecs.rubyforge.org
 * http://www.pluitsolutions.com/amazon-ecs
+
+== CREDITS
+
+Thanks to Dan Milne (http://da.nmilne.com/) for the signed request patch.
 
 == LICENSE
 
 (The MIT License)
 
-Copyright (c) 2006 Herryanto Siatono, Pluit Solutions
+Copyright (c) 2009 Herryanto Siatono, Pluit Solutions

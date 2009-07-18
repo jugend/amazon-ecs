@@ -6,7 +6,7 @@ require 'rake/packagetask'
 
 spec = Gem::Specification.new do |s| 
   s.name = "amazon-ecs"
-  s.version = "0.5.4"
+  s.version = "0.5.5"
   s.author = "Herryanto Siatono"
   s.email = "herryanto@pluitsolutions.com"
   s.homepage = "http://amazon-ecs.rubyforge.net/"
@@ -19,6 +19,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.extra_rdoc_files = ["README", "CHANGELOG"]
   s.add_dependency("hpricot", ">= 0.4")
+  s.add_dependency("ruby-hmac", ">= 0.3.2")
 end
  
 Rake::GemPackageTask.new(spec) do |pkg| 
