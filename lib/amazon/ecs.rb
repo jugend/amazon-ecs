@@ -205,14 +205,24 @@ module Amazon
         request_host = URI.parse(request_url).host
         
         qs = ''
-        opts.collect {|a,b| [camelize(a.to_s), b.to_s] }.sort {|c,d| c[0].to_s <=> d[0].to_s}.each {|e| 
+        
+        opts = opts.collect do |a,b| 
+          [camelize(a.to_s), b.to_s] 
+        end
+        
+        opts = opts.sort do |c,d| 
+          c[0].to_s <=> d[0].to_s
+        end
+        
+        opts.each do |e| 
           log "Adding #{e[0]}=#{e[1]}"
           next unless e[1]
           e[1] = e[1].join(',') if e[1].is_a? Array
-          v=URI.encode(e[1].to_s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+          # v = URI.encode(e[1].to_s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+          v = self.url_encode(e[1].to_s)
           qs << "&" unless qs.length == 0
           qs << "#{e[0]}=#{v}"
-        }
+        end
         
         signature = ''
         unless secret_key.nil?
@@ -221,6 +231,12 @@ module Amazon
         end
 
         "#{request_url}#{qs}#{signature}"
+      end
+      
+      def self.url_encode(string)
+        string.gsub( /([^a-zA-Z0-9_.~-]+)/ ) do
+          '%' + $1.unpack( 'H2' * $1.size ).join( '%' ).upcase
+        end
       end
       
       def self.camelize(s)
