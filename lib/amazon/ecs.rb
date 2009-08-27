@@ -26,6 +26,7 @@ require 'hpricot'
 require 'cgi'
 require 'hmac-sha2'
 require 'base64'
+require 'openssl'
 
 module Amazon
   class RequestError < StandardError; end
@@ -38,6 +39,11 @@ module Amazon
         :jp => 'http://webservices.amazon.co.jp/onca/xml?',
         :fr => 'http://webservices.amazon.fr/onca/xml?'
     }
+    
+    OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||
+                             OpenSSL::Digest.constants.include?( :SHA256 )
+    
+    OPENSSL_DIGEST = OpenSSL::Digest::Digest.new( 'sha256' ) if OPENSSL_DIGEST_SUPPORT
     
     @@options = {
       :version => "2009-01-06",
@@ -245,10 +251,16 @@ module Amazon
       
       def self.sign_request(url, key)
         return nil if key.nil?
-        signature = URI.escape( Base64.encode64( HMAC::SHA256.digest(key, url) ).strip, Regexp.new("[+=]") )
+        
+        if (OPENSSL_DIGEST_SUPPORT)
+          signature = OpenSSL::HMAC.digest(OPENSSL_DIGEST, key, url)
+          signature = [signature].pack('m').chomp
+        else
+          signature = Base64.encode64( HMAC::SHA256.digest(key, url) ).strip
+        end
+        signature = URI.escape(signature, Regexp.new("[+=]"))
         return signature
       end
-      
   end
 
   # Internal wrapper class to provide convenient method to access Hpricot element value.

@@ -12,7 +12,7 @@ If in the future, there is a change in REST XML output structure,
 no changes will be required on <tt>amazon-ecs</tt> library, 
 instead you just need to change the element path.
 
-Version: 0.5.6
+Version: 0.5.7
 
 == INSTALLATION
 
