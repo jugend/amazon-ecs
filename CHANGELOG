@@ -1,3 +1,7 @@
+1.0.0 2010-11-09
+----------------
+* Set default Amazon API version to 2010-10-01
+
 0.5.7 2009-08-28
 ----------------
 * Added support for to sign request using openssl with fallback on ruby-hmac

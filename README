@@ -1,6 +1,6 @@
 == amazon-ecs
 
-Generic Amazon E-commerce REST or Product Advertising API using Hpricot with configurable 
+Generic Product Advertising API (Amazon E-commerce REST API) using Hpricot with configurable 
 default options and method call options. Uses Response and 
 Element wrapper classes for easy access to REST XML output.
 
@@ -11,8 +11,6 @@ Hpricot element object, instead of providing one-to-one object/attributes to XML
 If in the future, there is a change in REST XML output structure, 
 no changes will be required on <tt>amazon-ecs</tt> library, 
 instead you just need to change the element path.
-
-Version: 0.5.7
 
 == INSTALLATION
 
@@ -97,7 +95,6 @@ http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 == LINKS
 
 * http://github.com/jugend/amazon-ecs
-* http://amazon-ecs.rubyforge.org
 * http://www.pluitsolutions.com/amazon-ecs
 
 == CREDITS
@@ -108,4 +105,4 @@ Thanks to Dan Milne (http://da.nmilne.com/) for the signed request patch.
 
 (The MIT License)
 
-Copyright (c) 2009 Herryanto Siatono, Pluit Solutions
+Copyright (c) 2010 Herryanto Siatono, http://www.siatono.com
