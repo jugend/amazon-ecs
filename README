@@ -86,12 +86,28 @@ instead you just need to update the element path.
         el.get_unescaped("content")
       end
     end
+    
+    # Extend Amazon::Ecs, replace 'other_operation' with the appropriate name
+    module Amazon
+      class Ecs
+        def self.other_operation(item_id, options)
+          opts[:operation] = '[other valid operation supported by Product Advertising API]'
+          
+          # setting default option value
+          opts[:item_id] = item_id
+        
+          self.send_request(opts)
+        end
+      end
+    end
+    
+    Amazon::Ecs.other_operation("[item_id]", :param1 => "abc", :param2 => "xyz")
 
 Refer to Amazon Product Advertising API documentation for more information 
-on Amazon REST request parameters and XML output:
+on other valid operations, request parameters and the XML response output:
 https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
 
-To get a sample of Amazon REST response XML output, use AWSZone.com scratch pad:
+To get a sample of Amazon REST XML response output, use AWSZone.com scratch pad:
 http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 == SOURCE CODES
