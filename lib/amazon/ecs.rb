@@ -282,14 +282,27 @@ module Amazon
       elements
     end
     
-    # Find Hpricot::Elements matching the given path, and convert to Amazon::Element.
-    # Returns an array Amazon::Elements if more than Hpricot::Elements size is greater than 1.
+    # Return an array of Amazon::Element matching the given path, or Amazon::Element if there 
+    # is only one element found.
+    #
+    # <b>DEPRECATED:</b> Please use <tt>get_elements</tt> and <tt>get_element</tt> instead.
     def search_and_convert(path)
+      elements = self.get_elements(path)
+      return elements.first if elements and elements.size == 1
+      elements
+    end
+    
+    # Return an array of Amazon::Element matching the given path
+    def get_elements(path)
       elements = self./(path)
       return unless elements
       elements = elements.map{|element| Element.new(element)}
-      return elements.first if elements.size == 1
-      elements
+    end
+    
+    # Similar with search_and_convert but always return first element if more than one elements found
+    def get_element(path)
+      elements = get_elements(path)
+      elements[0] if elements
     end
 
     # Get the text value of the given path, leave empty to retrieve current element value.
@@ -311,7 +324,12 @@ module Amazon
     def get_hash(path='')
       Element.get_hash(@element, path)
     end
-
+    
+    def attributes
+      return unless self.elem
+      self.elem.attributes
+    end
+    
     # Similar to #get, except an element object must be passed-in.
     def self.get(element, path='')
       return unless element

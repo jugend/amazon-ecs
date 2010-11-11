@@ -1,3 +1,8 @@
+1.1.0 2010-11-11
+----------------
+* Add get_elements, get_element, and attributes instance methods in Amazon::Element
+* Deprecate Amazon::Element#search_and_convert
+
 1.0.0 2010-11-09
 ----------------
 * Set default Amazon API version to 2010-10-01

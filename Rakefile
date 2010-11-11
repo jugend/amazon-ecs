@@ -6,7 +6,7 @@ require 'rake/packagetask'
 
 spec = Gem::Specification.new do |s| 
   s.name = "amazon-ecs"
-  s.version = "1.0.0"
+  s.version = "1.1.0"
   s.author = "Herryanto Siatono"
   s.email = "herryanto@gmail.com"
   s.homepage = "https://github.com/jugend/amazon-ecs"

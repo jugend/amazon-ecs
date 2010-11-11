@@ -1,16 +1,15 @@
 == amazon-ecs
 
-Generic Product Advertising API (Amazon E-commerce REST API) using Hpricot with configurable 
-default options and method call options. Uses Response and 
-Element wrapper classes for easy access to REST XML output.
+Generic Product Advertising Ruby API using Hpricot. Uses Response and 
+Element wrapper classes for easy access to the REST API XML output.
 
 It is generic, so you can easily extend <tt>Amazon::Ecs</tt> to support 
 other not implemented REST operations; and it is also generic because it just wraps around
 Hpricot element object, instead of providing one-to-one object/attributes to XML elements map.
 
-If in the future, there is a change in REST XML output structure, 
-no changes will be required on <tt>amazon-ecs</tt> library, 
-instead you just need to change the element path.
+The idea is as the API evolves, there is a change in REST XML output structure, 
+no updates will be required on <tt>amazon-ecs</tt> gem, 
+instead you just need to update the element path. 
 
 == INSTALLATION
 
@@ -18,22 +17,22 @@ instead you just need to change the element path.
 
 == EXAMPLE
 
-    require 'amazon/ecs'
+    require "amazon/ecs"
 	
     # set the default options; options will be camelized and converted to REST request parameters.
-    Amazon::Ecs.options = {:aWS_access_key_id => [your access key]}
+    Amazon::Ecs.options = {:aWS_access_key_id => "[your access key]"}
 
     # to generate signed requests include your secret key:
-    Amazon::Ecs.options = {:aWS_access_key_id => [your developer token], :aWS_secret_key => [your secret access key]}
+    Amazon::Ecs.options = {:aWS_access_key_id => "[your developer token]", :aWS_secret_key => "[your secret access key]"}
 
     # alternatively,
     Amazon::Ecs.configure do |options|
-        options[:aWS_access_key_id] = [your access key]
-        options[:aWS_secret_key] = [you secret key]
+        options[:aWS_access_key_id] = "[your access key]"
+        options[:aWS_secret_key] = "[you secret key]"
     end
 
     # options provided on method call will merge with the default options
-    res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
+    res = Amazon::Ecs.item_search("ruby", {:response_group => "Medium", :sort => "salesrank"})
 
     # some common response object methods
     res.is_valid_request?     # return true if request is valid
@@ -46,22 +45,31 @@ instead you just need to change the element path.
     # traverse through each item (Amazon::Element)
     res.items.each do |item|
       # retrieve string value using XML path
-      item.get('asin')
-      item.get('itemattributes/title')
+      item.get("asin")
+      item.get("itemattributes/title")
 
-      # or return Amazon::Element instance
-      atts = item.search_and_convert('itemattributes')
-      atts.get('title')
+      # return Amazon::Element instance
+      item_attributes = item.get_element("itemattributes")
+      item_attributes.get("title")
   
       # return first author or a string array of authors
-      atts.get('author')          # 'Author 1'
-      atts.get_array('author')    # ['Author 1', 'Author 2', ...]
+      item_attributes.get("author")          # "Author 1"
+      item_attributes.get_array("author")    # ["Author 1", "Author 2", ...]
   
       # return an hash of children text values with the element names as the keys
-      item.get_hash('smallimage') # {:url => ..., :width => ..., :height => ...}
+      item.get_hash("smallimage") # {:url => ..., :width => ..., :height => ...}
+
+      # return the first matching path as Amazon::Element
+      item_height = item.get_element("itemdimensions/height")
+      
+      # retrieve attributes from Amazon::Element
+      item_height.attributes["units"]   # "hundredths-inches"
+      
+      # return an array of Amazon::Element
+      authors = item.get_elements("author")
   
-      # note that '/' returns Hpricot::Elements array object, nil if not found
-      reviews = item/'editorialreview'
+      # return Hpricot::Elements object or nil if not found
+      reviews = item/"editorialreview"
   
       # traverse through Hpricot elements
       reviews.each do |review|
@@ -69,33 +77,26 @@ instead you just need to change the element path.
         Amazon::Element.get_hash(review) # [:source => ..., :content ==> ...]
     
         # Or to get unescaped HTML values
-        Amazon::Element.get_unescaped(review, 'source')
-        Amazon::Element.get_unescaped(review, 'content')
+        Amazon::Element.get_unescaped(review, "source")
+        Amazon::Element.get_unescaped(review, "content")
         
         # Or this way
         el = Amazon::Element.new(review)
-        el.get_unescaped('source')
-        el.get_unescaped('content')
+        el.get_unescaped("source")
+        el.get_unescaped("content")
       end
-      
-      # returns Amazon::Element instead of string
-      item.search_and_convert('itemattributes').
     end
 
-Refer to Amazon ECS documentation for more information on Amazon REST request parameters and XML output:
-http://docs.amazonwebservices.com/AWSEcommerceService/2006-09-13/
+Refer to Amazon Product Advertising API documentation for more information 
+on Amazon REST request parameters and XML output:
+https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
 
 To get a sample of Amazon REST response XML output, use AWSZone.com scratch pad:
 http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 == SOURCE CODES
 
-* http://github.com/jugend/amazon-ecs/tree/master
-
-== LINKS
-
 * http://github.com/jugend/amazon-ecs
-* http://www.pluitsolutions.com/amazon-ecs
 
 == CREDITS
 

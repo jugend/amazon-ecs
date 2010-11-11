@@ -122,5 +122,32 @@ class Amazon::EcsTest < Test::Unit::TestCase
     assert authors.is_a?(Array)
     assert 3, authors.size
     assert_equal "Dave Thomas", authors.first.get
-  end  
+  end
+  
+  def test_get_elements
+    resp = Amazon::Ecs.item_lookup('0974514055')
+    item = resp.first_item
+    
+    authors = item.get_elements("author")
+    assert authors.is_a?(Array)
+    assert 3, authors.size
+    assert authors.first.is_a?(Amazon::Element)
+    assert_equal "Dave Thomas", authors.first.get
+    
+    asin = item.get_elements("asin")
+    assert asin.is_a?(Array)
+    assert 1, authors.size
+  end
+  
+  def test_get_element_and_attributes
+    resp = Amazon::Ecs.item_lookup('0974514055')
+    item = resp.first_item
+
+    first_author = item.get_element("author")
+    assert_equal "Dave Thomas", first_author.get
+    assert_equal nil, first_author.attributes['unknown']
+    
+    item_height = item.get_element("itemdimensions/height")
+    assert_equal "hundredths-inches", item_height.attributes['units']
+  end
 end
