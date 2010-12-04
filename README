@@ -90,7 +90,7 @@ instead you just need to update the element path.
     # Extend Amazon::Ecs, replace 'other_operation' with the appropriate name
     module Amazon
       class Ecs
-        def self.other_operation(item_id, opts)
+        def self.other_operation(item_id, opts={})
           opts[:operation] = '[other valid operation supported by Product Advertising API]'
           
           # setting default option value
