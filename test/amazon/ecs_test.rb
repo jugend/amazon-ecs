@@ -1,7 +1,9 @@
+# coding: utf-8
+
 require 'rubygems'
 require 'test/unit'
 
-require File.dirname(__FILE__) + '/../../lib/amazon/ecs'
+require './' + File.dirname(__FILE__) + '/../../lib/amazon/ecs'
 
 class Amazon::EcsTest < Test::Unit::TestCase
 
@@ -152,5 +154,10 @@ class Amazon::EcsTest < Test::Unit::TestCase
     
     item_height = item.get_element("itemdimensions/height")
     assert_equal "hundredths-inches", item_height.attributes['units']
+  end
+  
+  def test_multibyte_search
+    resp = Amazon::Ecs.item_search("パソコン")
+    assert(resp.is_valid_request?)
   end
 end
