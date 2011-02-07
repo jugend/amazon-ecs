@@ -17,22 +17,22 @@ instead you just need to update the element path.
 
 == EXAMPLE
 
-    require "amazon/ecs"
+    require 'amazon/ecs'
 	
     # set the default options; options will be camelized and converted to REST request parameters.
-    Amazon::Ecs.options = {:aWS_access_key_id => "[your access key]"}
+    Amazon::Ecs.options = {:aWS_access_key_id => '[your access key]'}
 
     # to generate signed requests include your secret key:
-    Amazon::Ecs.options = {:aWS_access_key_id => "[your developer token]", :aWS_secret_key => "[your secret access key]"}
+    Amazon::Ecs.options = {:aWS_access_key_id => '[your developer token]', :aWS_secret_key => '[your secret access key]'}
 
     # alternatively,
     Amazon::Ecs.configure do |options|
-        options[:aWS_access_key_id] = "[your access key]"
-        options[:aWS_secret_key] = "[you secret key]"
+        options[:aWS_access_key_id] = '[your access key]'
+        options[:aWS_secret_key] = '[you secret key]'
     end
 
     # options provided on method call will merge with the default options
-    res = Amazon::Ecs.item_search("ruby", {:response_group => "Medium", :sort => "salesrank"})
+    res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
 
     # some common response object methods
     res.is_valid_request?     # return true if request is valid
@@ -45,31 +45,31 @@ instead you just need to update the element path.
     # traverse through each item (Amazon::Element)
     res.items.each do |item|
       # retrieve string value using XML path
-      item.get("asin")
-      item.get("itemattributes/title")
+      item.get('asin')
+      item.get('itemattributes/title')
 
       # return Amazon::Element instance
-      item_attributes = item.get_element("itemattributes")
-      item_attributes.get("title")
+      item_attributes = item.get_element('itemattributes')
+      item_attributes.get('title')
   
       # return first author or a string array of authors
-      item_attributes.get("author")          # "Author 1"
-      item_attributes.get_array("author")    # ["Author 1", "Author 2", ...]
+      item_attributes.get('author')          # 'Author 1'
+      item_attributes.get_array('author')    # ['Author 1', 'Author 2', ...]
   
       # return an hash of children text values with the element names as the keys
-      item.get_hash("smallimage") # {:url => ..., :width => ..., :height => ...}
+      item.get_hash('smallimage') # {:url => ..., :width => ..., :height => ...}
 
       # return the first matching path as Amazon::Element
-      item_height = item.get_element("itemdimensions/height")
+      item_height = item.get_element('itemdimensions/height')
       
       # retrieve attributes from Amazon::Element
-      item_height.attributes["units"]   # "hundredths-inches"
+      item_height.attributes['units']   # 'hundredths-inches'
       
       # return an array of Amazon::Element
-      authors = item.get_elements("author")
+      authors = item.get_elements('author')
   
       # return Hpricot::Elements object or nil if not found
-      reviews = item/"editorialreview"
+      reviews = item/'editorialreview'
   
       # traverse through Hpricot elements
       reviews.each do |review|
@@ -77,13 +77,13 @@ instead you just need to update the element path.
         Amazon::Element.get_hash(review) # [:source => ..., :content ==> ...]
     
         # Or to get unescaped HTML values
-        Amazon::Element.get_unescaped(review, "source")
-        Amazon::Element.get_unescaped(review, "content")
+        Amazon::Element.get_unescaped(review, 'source')
+        Amazon::Element.get_unescaped(review, 'content')
         
         # Or this way
         el = Amazon::Element.new(review)
-        el.get_unescaped("source")
-        el.get_unescaped("content")
+        el.get_unescaped('source')
+        el.get_unescaped('content')
       end
     end
     
@@ -101,7 +101,7 @@ instead you just need to update the element path.
       end
     end
     
-    Amazon::Ecs.other_operation("[item_id]", :param1 => "abc", :param2 => "xyz")
+    Amazon::Ecs.other_operation('[item_id]', :param1 => 'abc', :param2 => 'xyz')
 
 Refer to Amazon Product Advertising API documentation for more information 
 on other valid operations, request parameters and the XML response output:

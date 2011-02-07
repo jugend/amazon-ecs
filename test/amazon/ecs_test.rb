@@ -1,4 +1,7 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'rubygems'
+require 'test/unit'
+
+require File.dirname(__FILE__) + '/../../lib/amazon/ecs'
 
 class Amazon::EcsTest < Test::Unit::TestCase
 

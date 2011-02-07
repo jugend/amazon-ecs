@@ -1,3 +1,7 @@
+1.1.1 2011-02-07
+----------------
+* Remove test/ecs_signature_test.rb and test/test_helper.rb
+
 1.1.0 2010-11-11
 ----------------
 * Add get_elements, get_element, and attributes instance methods in Amazon::Element
