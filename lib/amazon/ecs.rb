@@ -241,7 +241,7 @@ module Amazon
       
       def self.url_encode(string)
         string.gsub( /([^a-zA-Z0-9_.~-]+)/ ) do
-          '%' + $1.unpack( 'H2' * $1.size ).join( '%' ).upcase
+          '%' + $1.unpack( 'H2' * $1.bytesize ).join( '%' ).upcase
         end
       end
       
