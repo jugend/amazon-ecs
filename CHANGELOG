@@ -1,3 +1,7 @@
+1.2.1 2011-02-23
+----------------
+* Add support for Amazon Italy
+
 1.2.0 2011-02-07
 ----------------
 * Remove test/ecs_signature_test.rb and test/test_helper.rb
