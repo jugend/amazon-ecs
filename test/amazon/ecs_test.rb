@@ -162,7 +162,12 @@ class Amazon::EcsTest < Test::Unit::TestCase
   end
 
   def test_marshal_dump_request
-    resp = Amazon::Ecs::Response.new('<?xml version="1.0"?>')
-    assert_equal Marshal.load(Marshal.dump(resp)).doc.to_s, resp.doc.to_s
+    resp = Amazon::Ecs::Response.new(File.read(File.expand_path('../../fixtures/item_search.xml', __FILE__)))
+    dumped_resp = Marshal.load(Marshal.dump(resp))
+    assert_equal resp.doc.to_s,       dumped_resp.doc.to_s
+    assert_equal resp.items.size,     dumped_resp.items.size
+    assert_equal resp.item_page,      dumped_resp.item_page
+    assert_equal resp.total_results,  dumped_resp.total_results
+    assert_equal resp.total_pages,    dumped_resp.total_pages
   end
 end

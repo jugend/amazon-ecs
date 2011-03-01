@@ -195,6 +195,10 @@ module Amazon
 
       def marshal_load(xml)
         initialize(xml)
+        items
+        item_page
+        total_results
+        total_pages
       end
     end
     
