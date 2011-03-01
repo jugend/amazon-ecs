@@ -160,4 +160,9 @@ class Amazon::EcsTest < Test::Unit::TestCase
     resp = Amazon::Ecs.item_search("パソコン")
     assert(resp.is_valid_request?)
   end
+
+  def test_marshal_dump_request
+    resp = Amazon::Ecs::Response.new('<?xml version="1.0"?>')
+    assert_equal Marshal.load(Marshal.dump(resp)).doc.to_s, resp.doc.to_s
+  end
 end

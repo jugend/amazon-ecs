@@ -123,6 +123,7 @@ module Amazon
     class Response
       # XML input is in string format
       def initialize(xml)
+        @xml = xml # for serialize
         @doc = Hpricot(xml)
       end
 
@@ -186,6 +187,14 @@ module Amazon
           @total_pages = (@doc/"totalpages").inner_html.to_i
         end
         @total_pages
+      end
+
+      def marshal_dump
+        @xml
+      end
+
+      def marshal_load(xml)
+        initialize(xml)
       end
     end
     
