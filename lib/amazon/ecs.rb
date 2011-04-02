@@ -126,6 +126,7 @@ module Amazon
         @doc = Nokogiri::XML(xml)
         @doc.remove_namespaces!
         @doc.xpath("//*").each { |elem| elem.name = elem.name.downcase }
+        @doc.xpath("//@*").each { |att| att.name = att.name.downcase }
       end
 
       # Return Nokogiri::XML::Document object.
@@ -135,7 +136,7 @@ module Amazon
 
       # Return true if request is valid.
       def is_valid_request?
-        (@doc/"isvalid").inner_html == "True"
+        Element.get(@doc, "//isvalid") == "True"
       end
 
       # Return true if response has an error.
@@ -145,17 +146,17 @@ module Amazon
 
       # Return error message.
       def error
-        Element.get(@doc, "error/message")
+        Element.get(@doc, "//error/message")
       end
       
       # Return error code
       def error_code
-        Element.get(@doc, "error/code")
+        Element.get(@doc, "//error/code")
       end
       
       # Return an array of Amazon::Element item objects.
       def items
-        @items ||= (@doc/"item").collect {|item| Element.new(item)}
+        @items ||= (@doc/"item").collect { |item| Element.new(item) }
       end
       
       # Return the first item (Amazon::Element)
@@ -165,17 +166,17 @@ module Amazon
       
       # Return current page no if :item_page option is when initiating the request.
       def item_page
-        @item_page ||= (@doc/"itemsearchrequest/itempage").inner_html.to_i
+        @item_page ||= Element.get(@doc, "//itempage").to_i
       end
 
       # Return total results.
       def total_results
-        @total_results ||= (@doc/"totalresults").inner_html.to_i
+        @total_results ||= Element.get(@doc, "//totalresults").to_i
       end
       
       # Return total pages.
       def total_pages
-        @total_pages ||= (@doc/"totalpages").inner_html.to_i
+        @total_pages ||= Element.get(@doc, "//totalpages").to_i
       end
     end
     
