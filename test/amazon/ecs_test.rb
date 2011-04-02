@@ -92,7 +92,7 @@ class Amazon::EcsTest < Test::Unit::TestCase
     # test /
     reviews = item/"editorialreview"
     reviews.each do |review|
-      # returns unescaped HTML content, Hpricot escapes all text values
+      # returns unescaped HTML content, Nokogiri escapes all text values
       assert Amazon::Element.get_unescaped(review, 'source')
       assert Amazon::Element.get_unescaped(review, 'content')
     end
