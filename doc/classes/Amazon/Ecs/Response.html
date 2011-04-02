@@ -143,7 +143,7 @@ XML input is in string format
 <pre>
      <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 109</span>
 109:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">xml</span>)
-110:         <span class="ruby-ivar">@doc</span> = <span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">xml</span>)
+110:         <span class="ruby-ivar">@doc</span> = <span class="ruby-constant">Nokogiri</span>(<span class="ruby-identifier">xml</span>)
 111:       <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
@@ -163,7 +163,7 @@ XML input is in string format
       
         <div class="method-description">
           <p>
-Return Hpricot object.
+Return Nokogiri::XML object.
 </p>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
