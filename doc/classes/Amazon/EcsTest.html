@@ -169,7 +169,7 @@
 71:     <span class="ruby-comment cmt"># test /</span>
 72:     <span class="ruby-identifier">reviews</span> = <span class="ruby-identifier">item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;editorialreview&quot;</span>
 73:         <span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">review</span><span class="ruby-operator">|</span>
-74:                 <span class="ruby-comment cmt"># returns unescaped HTML content, Hpricot escapes all text values</span>
+74:                 <span class="ruby-comment cmt"># returns unescaped HTML content, Nokogiri escapes all text values</span>
 75:                 <span class="ruby-identifier">assert</span> <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>.<span class="ruby-identifier">get_unescaped</span>(<span class="ruby-identifier">review</span>, <span class="ruby-value str">'source'</span>)
 76:                 <span class="ruby-identifier">assert</span> <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>.<span class="ruby-identifier">get_unescaped</span>(<span class="ruby-identifier">review</span>, <span class="ruby-value str">'content'</span>)
 77:         <span class="ruby-keyword kw">end</span>

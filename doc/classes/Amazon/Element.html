@@ -180,7 +180,7 @@ object must be passed-in.
 268:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">element</span>
 269:       
 270:       <span class="ruby-identifier">result</span> = <span class="ruby-identifier">element</span><span class="ruby-operator">/</span><span class="ruby-identifier">path</span>
-271:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">result</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hpricot</span><span class="ruby-operator">::</span><span class="ruby-constant">Elements</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">result</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>)
+271:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">result</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">result</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>)
 272:         <span class="ruby-identifier">parsed_result</span> = []
 273:         <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
 274:           <span class="ruby-identifier">parsed_result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Element</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">item</span>)
