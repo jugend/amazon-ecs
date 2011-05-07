@@ -3,7 +3,7 @@
 Gem::Specification.new do |gem|
   gem.name = %q{amazon-ecs}
   gem.version = "1.2.2"
-  gem.date = "2011-02-23"
+  gem.date = "2011-05-07"
   gem.authors = ["Herryanto Siatono"]
   gem.description = %q{Generic Amazon Product Advertising Ruby API}
   gem.email = %q{herryanto@gmail.com}
