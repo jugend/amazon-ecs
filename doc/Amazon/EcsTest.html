@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: Amazon::EcsTest</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../test/amazon/ecs_test_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="test/amazon/ecs_test.rb">test/amazon/ecs_test.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Test::Unit::TestCase</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-test_get_element_and_attributes">#test_get_element_and_attributes</a></li>
+					
+					<li><a href="#method-i-test_get_elements">#test_get_elements</a></li>
+					
+					<li><a href="#method-i-test_item_get">#test_item_get</a></li>
+					
+					<li><a href="#method-i-test_item_lookup">#test_item_lookup</a></li>
+					
+					<li><a href="#method-i-test_item_lookup_with_invalid_request">#test_item_lookup_with_invalid_request</a></li>
+					
+					<li><a href="#method-i-test_item_lookup_with_no_result">#test_item_lookup_with_no_result</a></li>
+					
+					<li><a href="#method-i-test_item_search">#test_item_search</a></li>
+					
+					<li><a href="#method-i-test_item_search_by_author">#test_item_search_by_author</a></li>
+					
+					<li><a href="#method-i-test_item_search_uk">#test_item_search_uk</a></li>
+					
+					<li><a href="#method-i-test_item_search_with_invalid_request">#test_item_search_with_invalid_request</a></li>
+					
+					<li><a href="#method-i-test_item_search_with_no_result">#test_item_search_with_no_result</a></li>
+					
+					<li><a href="#method-i-test_item_search_with_paging">#test_item_search_with_paging</a></li>
+					
+					<li><a href="#method-i-test_item_search_with_special_characters">#test_item_search_with_special_characters</a></li>
+					
+					<li><a href="#method-i-test_multibyte_search">#test_multibyte_search</a></li>
+					
+					<li><a href="#method-i-test_search_and_convert">#test_search_and_convert</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../CHANGELOG.html">CHANGELOG</a></li>
+				
+					<li class="file"><a href="../README.html">README</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../Amazon.html">Amazon</a></li>
+				
+					<li><a href="../Amazon/Ecs.html">Amazon::Ecs</a></li>
+				
+					<li><a href="../Amazon/Ecs/Response.html">Amazon::Ecs::Response</a></li>
+				
+					<li><a href="../Amazon/EcsTest.html">Amazon::EcsTest</a></li>
+				
+					<li><a href="../Amazon/Element.html">Amazon::Element</a></li>
+				
+					<li><a href="../Amazon/RequestError.html">Amazon::RequestError</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">Amazon::EcsTest</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+		<div id="constants-list" class="section">
+			<h3 class="section-header">Constants</h3>
+			<dl>
+			
+				<dt><a name="AWS_ACCESS_KEY_ID">AWS_ACCESS_KEY_ID</a></dt>
+				
+				<dd class="description"></dd>
+				
+			
+				<dt><a name="AWS_SECRET_KEY">AWS_SECRET_KEY</a></dt>
+				
+				<dd class="description"></dd>
+				
+			
+			</dl>
+		</div>
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="test-get-element-and-attributes-method" class="method-detail ">
+				<a name="method-i-test_get_element_and_attributes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_get_element_and_attributes</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-get-element-and-attributes-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 147</span>
+147:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_get_element_and_attributes</span>
+148:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_lookup</span>(<span class="ruby-value str">'0974514055'</span>)
+149:     <span class="ruby-identifier">item</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">first_item</span>
+150: 
+151:     <span class="ruby-identifier">first_author</span> = <span class="ruby-identifier">item</span>.<span class="ruby-identifier">get_element</span>(<span class="ruby-value str">&quot;author&quot;</span>)
+152:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;Dave Thomas&quot;</span>, <span class="ruby-identifier">first_author</span>.<span class="ruby-identifier">get</span>
+153:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">first_author</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'unknown'</span>]
+154:     
+155:     <span class="ruby-identifier">item_height</span> = <span class="ruby-identifier">item</span>.<span class="ruby-identifier">get_element</span>(<span class="ruby-value str">&quot;itemdimensions/height&quot;</span>)
+156:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;hundredths-inches&quot;</span>, <span class="ruby-identifier">item_height</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'units'</span>]
+157:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-get-elements-method" class="method-detail ">
+				<a name="method-i-test_get_elements"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_get_elements</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-get-elements-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 132</span>
+132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_get_elements</span>
+133:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_lookup</span>(<span class="ruby-value str">'0974514055'</span>)
+134:     <span class="ruby-identifier">item</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">first_item</span>
+135:     
+136:     <span class="ruby-identifier">authors</span> = <span class="ruby-identifier">item</span>.<span class="ruby-identifier">get_elements</span>(<span class="ruby-value str">&quot;author&quot;</span>)
+137:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+138:     <span class="ruby-identifier">assert</span> <span class="ruby-value">3</span>, <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">size</span>
+139:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>)
+140:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;Dave Thomas&quot;</span>, <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">get</span>
+141:     
+142:     <span class="ruby-identifier">asin</span> = <span class="ruby-identifier">item</span>.<span class="ruby-identifier">get_elements</span>(<span class="ruby-value str">&quot;asin&quot;</span>)
+143:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">asin</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+144:     <span class="ruby-identifier">assert</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">size</span>
+145:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-get-method" class="method-detail ">
+				<a name="method-i-test_item_get"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_get</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-get-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 72</span>
+72:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_get</span>
+73:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">&quot;0974514055&quot;</span>)
+74:     <span class="ruby-identifier">item</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">first_item</span>
+75:         
+76:     <span class="ruby-comment cmt"># test get</span>
+77:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;Programming Ruby: The Pragmatic Programmers' Guide, Second Edition&quot;</span>, 
+78:       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;itemattributes/title&quot;</span>)
+79:       
+80:     <span class="ruby-comment cmt"># test get_array</span>
+81:     <span class="ruby-identifier">assert_equal</span> [<span class="ruby-value str">'Dave Thomas'</span>, <span class="ruby-value str">'Chad Fowler'</span>, <span class="ruby-value str">'Andy Hunt'</span>], 
+82:       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">get_array</span>(<span class="ruby-value str">&quot;author&quot;</span>)
+83:    
+84:     <span class="ruby-comment cmt"># test get_hash</span>
+85:     <span class="ruby-identifier">small_image</span> = <span class="ruby-identifier">item</span>.<span class="ruby-identifier">get_hash</span>(<span class="ruby-value str">&quot;smallimage&quot;</span>)
+86:     
+87:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">3</span>, <span class="ruby-identifier">small_image</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">size</span>
+88:     <span class="ruby-identifier">assert_match</span> <span class="ruby-value str">&quot;.jpg&quot;</span>, <span class="ruby-identifier">small_image</span>[<span class="ruby-value">:url</span>]
+89:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;75&quot;</span>, <span class="ruby-identifier">small_image</span>[<span class="ruby-value">:height</span>]
+90:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;59&quot;</span>, <span class="ruby-identifier">small_image</span>[<span class="ruby-value">:width</span>]
+91:     
+92:     <span class="ruby-comment cmt"># test /</span>
+93:     <span class="ruby-identifier">reviews</span> = <span class="ruby-identifier">item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;editorialreview&quot;</span>
+94:     <span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">review</span><span class="ruby-operator">|</span>
+95:       <span class="ruby-comment cmt"># returns unescaped HTML content, Nokogiri escapes all text values</span>
+96:       <span class="ruby-identifier">assert</span> <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>.<span class="ruby-identifier">get_unescaped</span>(<span class="ruby-identifier">review</span>, <span class="ruby-value str">'source'</span>)
+97:       <span class="ruby-identifier">assert</span> <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>.<span class="ruby-identifier">get_unescaped</span>(<span class="ruby-identifier">review</span>, <span class="ruby-value str">'content'</span>)
+98:     <span class="ruby-keyword kw">end</span>
+99:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-lookup-method" class="method-detail ">
+				<a name="method-i-test_item_lookup"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_lookup</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Test item_lookup
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-lookup-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 102</span>
+102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_lookup</span>
+103:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_lookup</span>(<span class="ruby-value str">'0974514055'</span>)
+104:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;Programming Ruby: The Pragmatic Programmers' Guide, Second Edition&quot;</span>, 
+105:     <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">first_item</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;itemattributes/title&quot;</span>)
+106:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-lookup-with-invalid-request-method" class="method-detail ">
+				<a name="method-i-test_item_lookup_with_invalid_request"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_lookup_with_invalid_request</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-lookup-with-invalid-request-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 108</span>
+108:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_lookup_with_invalid_request</span>
+109:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_lookup</span>(<span class="ruby-keyword kw">nil</span>)
+110:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">has_error?</span>
+111:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">error</span>
+112:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-lookup-with-no-result-method" class="method-detail ">
+				<a name="method-i-test_item_lookup_with_no_result"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_lookup_with_no_result</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-lookup-with-no-result-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 114</span>
+114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_lookup_with_no_result</span>
+115:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_lookup</span>(<span class="ruby-value str">'abc'</span>)
+116:     
+117:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>
+118:     <span class="ruby-identifier">assert_match</span>(<span class="ruby-regexp re">/ABC is not a valid value for ItemId/</span>, <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">error</span>)
+119:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-search-method" class="method-detail ">
+				<a name="method-i-test_item_search"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_search</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Test item_search
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-search-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 23</span>
+23:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_search</span>
+24:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">'ruby'</span>)
+25:     
+26:     <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>)
+27:     <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">total_results</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">3600</span>)
+28:     <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">total_pages</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">360</span>)
+29:     
+30:     <span class="ruby-identifier">signature_elements</span> = (<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">doc</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;arguments/argument&quot;</span>).<span class="ruby-identifier">select</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ele</span><span class="ruby-operator">|</span> 
+31:       <span class="ruby-identifier">ele</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'name'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'Signature'</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">ele</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'Name'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'Signature'</span>
+32:     <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">length</span>
+33:     
+34:     <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">signature_elements</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+35:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-search-by-author-method" class="method-detail ">
+				<a name="method-i-test_item_search_by_author"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_search_by_author</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-search-by-author-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 67</span>
+67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_search_by_author</span>
+68:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">'dave'</span>, <span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:author</span>)
+69:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>
+70:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-search-uk-method" class="method-detail ">
+				<a name="method-i-test_item_search_uk"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_search_uk</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-search-uk-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 62</span>
+62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_search_uk</span>
+63:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">'ruby'</span>, <span class="ruby-value">:country</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:uk</span>)
+64:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>
+65:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-search-with-invalid-request-method" class="method-detail ">
+				<a name="method-i-test_item_search_with_invalid_request"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_search_with_invalid_request</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-search-with-invalid-request-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 49</span>
+49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_search_with_invalid_request</span>
+50:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-keyword kw">nil</span>)
+51:     <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>
+52:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-search-with-no-result-method" class="method-detail ">
+				<a name="method-i-test_item_search_with_no_result"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_search_with_no_result</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-search-with-no-result-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 54</span>
+54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_search_with_no_result</span>
+55:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">'afdsafds'</span>)
+56:     
+57:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>
+58:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;We did not find any matches for your request.&quot;</span>, 
+59:       <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">error</span>
+60:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-search-with-paging-method" class="method-detail ">
+				<a name="method-i-test_item_search_with_paging"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_search_with_paging</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-search-with-paging-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_search_with_paging</span>
+44:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">'ruby'</span>, <span class="ruby-value">:item_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)
+45:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>
+46:     <span class="ruby-identifier">assert</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">item_page</span>
+47:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-item-search-with-special-characters-method" class="method-detail ">
+				<a name="method-i-test_item_search_with_special_characters"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_item_search_with_special_characters</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-item-search-with-special-characters-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 37</span>
+37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_item_search_with_special_characters</span>
+38:     <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">debug</span> = <span class="ruby-keyword kw">true</span>
+39:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">'()*&amp;^%$'</span>)
+40:     <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>)
+41:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-multibyte-search-method" class="method-detail ">
+				<a name="method-i-test_multibyte_search"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_multibyte_search</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-multibyte-search-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 159</span>
+159:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_multibyte_search</span>
+160:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_search</span>(<span class="ruby-value str">&quot;パソコン&quot;</span>)
+161:     <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">is_valid_request?</span>)
+162:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-search-and-convert-method" class="method-detail ">
+				<a name="method-i-test_search_and_convert"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_search_and_convert</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="test-search-and-convert-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/amazon/ecs_test.rb, line 121</span>
+121:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_search_and_convert</span>
+122:     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Amazon</span><span class="ruby-operator">::</span><span class="ruby-constant">Ecs</span>.<span class="ruby-identifier">item_lookup</span>(<span class="ruby-value str">'0974514055'</span>)
+123:     <span class="ruby-identifier">title</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">first_item</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;itemattributes/title&quot;</span>)
+124:     <span class="ruby-identifier">authors</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">first_item</span>.<span class="ruby-identifier">search_and_convert</span>(<span class="ruby-value str">&quot;author&quot;</span>)
+125:     
+126:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;Programming Ruby: The Pragmatic Programmers' Guide, Second Edition&quot;</span>, <span class="ruby-identifier">title</span>
+127:     <span class="ruby-identifier">assert</span> <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+128:     <span class="ruby-identifier">assert</span> <span class="ruby-value">3</span>, <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">size</span>
+129:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">&quot;Dave Thomas&quot;</span>, <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">get</span>
+130:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

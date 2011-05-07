@@ -1,24 +1,323 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<!--
-
-    amazon-ecs
-
-  -->
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-  <title>amazon-ecs</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>amazon-ecs</title>
+
+	<link type="text/css" media="screen" href="rdoc.css" rel="stylesheet" />
+
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
 </head>
-<frameset rows="20%, 80%">
-    <frameset cols="25%,35%,45%">
-        <frame src="fr_file_index.html"   title="Files" name="Files" />
-        <frame src="fr_class_index.html"  name="Classes" />
-        <frame src="fr_method_index.html" name="Methods" />
-    </frameset>
-    <frame src="files/README.html" name="docwin" />
-</frameset>
+<body class="indexpage">
+
+	
+	<h1>amazon-ecs</h1>
+
+	
+	<div id="main">
+		<h2>amazon-ecs</h2>
+<p>
+Generic Product Advertising Ruby API using Nokogiri. Uses Response and 
+Element wrapper classes for easy access to the REST API XML output.
+</p>
+<p>
+It is generic, so you can easily extend <tt>Amazon::Ecs</tt> to support 
+other not implemented REST operations; and it is also generic because it
+just wraps around Nokogiri element object, instead of providing one-to-one
+object/attributes to XML elements map.
+</p>
+<p>
+The idea is as the API evolves, there is a change in REST XML output
+structure,  no updates will be required on <tt>amazon-ecs</tt> gem, 
+instead you just need to update the element path. 
+</p>
+<h2>INSTALLATION</h2>
+<pre>
+  $ gem install amazon-ecs
+</pre>
+<h2>EXAMPLE</h2>
+<pre>
+    require 'amazon/ecs'
+        
+    # set the default options; options will be camelized and converted to REST request parameters.
+    Amazon::Ecs.options = {:aWS_access_key_id =&gt; '[your access key]'}
+
+    # to generate signed requests include your secret key:
+    Amazon::Ecs.options = {:aWS_access_key_id =&gt; '[your developer token]', :aWS_secret_key =&gt; '[your secret access key]'}
+
+    # alternatively,
+    Amazon::Ecs.configure do |options|
+        options[:aWS_access_key_id] = '[your access key]'
+        options[:aWS_secret_key] = '[you secret key]'
+    end
+
+    # options provided on method call will merge with the default options
+    res = Amazon::Ecs.item_search('ruby', {:response_group =&gt; 'Medium', :sort =&gt; 'salesrank'})
+    
+    # search amazon uk
+    res = Amazon::Ecs.item_search('ruby', :country =&gt; 'uk')
+    
+    # some common response object methods
+    res.is_valid_request?     # return true if request is valid
+    res.has_error?            # return true if there is an error
+    res.error                 # return error message if there is any
+    res.total_pages           # return total pages
+    res.total_results         # return total results
+    res.item_page             # return current page no if :item_page option is provided
+
+    # traverse through each item (Amazon::Element)
+    res.items.each do |item|
+      # retrieve string value using XML path
+      item.get('asin')
+      item.get('itemattributes/title')
+
+      # return Amazon::Element instance
+      item_attributes = item.get_element('itemattributes')
+      item_attributes.get('title')
+  
+      # return first author or a string array of authors
+      item_attributes.get('author')          # 'Author 1'
+      item_attributes.get_array('author')    # ['Author 1', 'Author 2', ...]
+  
+      # return an hash of children text values with the element names as the keys
+      item.get_hash('smallimage') # {:url =&gt; ..., :width =&gt; ..., :height =&gt; ...}
+
+      # return the first matching path as Amazon::Element
+      item_height = item.get_element('itemdimensions/height')
+      
+      # retrieve attributes from Amazon::Element
+      item_height.attributes['units']   # 'hundredths-inches'
+      
+      # return an array of Amazon::Element
+      authors = item.get_elements('author')
+  
+      # return Nokogiri::XML::NodeSet object or nil if not found
+      reviews = item/'editorialreview'
+  
+      # traverse through Nokogiri elements
+      reviews.each do |review|
+        # Getting hash value out of Nokogiri element
+        Amazon::Element.get_hash(review) # [:source =&gt; ..., :content ==&gt; ...]
+    
+        # Or to get unescaped HTML values
+        Amazon::Element.get_unescaped(review, 'source')
+        Amazon::Element.get_unescaped(review, 'content')
+        
+        # Or this way
+        el = Amazon::Element.new(review)
+        el.get_unescaped('source')
+        el.get_unescaped('content')
+      end
+    end
+    
+    # Extend Amazon::Ecs, replace 'other_operation' with the appropriate name
+    module Amazon
+      class Ecs
+        def self.other_operation(item_id, opts={})
+          opts[:operation] = '[other valid operation supported by Product Advertising API]'
+          
+          # setting default option value
+          opts[:item_id] = item_id
+        
+          self.send_request(opts)
+        end
+      end
+    end
+    
+    Amazon::Ecs.other_operation('[item_id]', :param1 =&gt; 'abc', :param2 =&gt; 'xyz')
+</pre>
+<p>
+Refer to <a href="Amazon.html">Amazon</a> Product Advertising API
+documentation for more information  on other valid operations, request
+parameters and the XML response output: <a
+href="https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html">affiliate-program.amazon.com/gp/advertising/api/detail/main.html</a>
+</p>
+<p>
+To get a sample of <a href="Amazon.html">Amazon</a> REST XML response
+output, use AWSZone.com scratch pad: <a
+href="http://www.awszone.com/scratchpads/aws/ecs.us/index.aws">www.awszone.com/scratchpads/aws/ecs.us/index.aws</a>
+</p>
+<h2>SOURCE CODES</h2>
+<ul>
+<li><p>
+<a
+href="http://github.com/jugend/amazon-ecs">github.com/jugend/amazon-ecs</a>
+</p>
+</li>
+</ul>
+<h2>CREDITS</h2>
+<p>
+Thanks to Dan Milne (<a href="http://da.nmilne.com/">da.nmilne.com/</a>)
+for the signed request patch.
+</p>
+<h2>LICENSE</h2>
+<p>
+(The MIT License)
+</p>
+<p>
+Copyright &#169; 2010 Herryanto Siatono, <a
+href="http://www.siatono.com">www.siatono.com</a>
+</p>
+
+	</div>
+	
+
+	
+	
+	<h2>Files</h2>
+	<ul>
+		
+			<li class="file"><a href="CHANGELOG.html">CHANGELOG</a></li>
+		
+			<li class="file"><a href="README.html">README</a></li>
+		
+	</ul>
+	
+
+	<h2 id="classes">Classes/Modules</h2>
+	<ul>
+		
+		<li class="module"><a href="Amazon.html">Amazon</a></li>
+		
+		<li class="class"><a href="Amazon/Ecs.html">Amazon::Ecs</a></li>
+		
+		<li class="class"><a href="Amazon/Ecs/Response.html">Amazon::Ecs::Response</a></li>
+		
+		<li class="class"><a href="Amazon/EcsTest.html">Amazon::EcsTest</a></li>
+		
+		<li class="class"><a href="Amazon/Element.html">Amazon::Element</a></li>
+		
+		<li class="class"><a href="Amazon/RequestError.html">Amazon::RequestError</a></li>
+		
+	</ul>
+
+	<h2 id="methods">Methods</h2>
+	<ul>
+		
+			<li><a href="Amazon/Ecs.html#method-c-camelize">::camelize &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-configure">::configure &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-debug">::debug &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-debug%3D">::debug= &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Element.html#method-c-get">::get &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-c-get_array">::get_array &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-c-get_hash">::get_hash &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-c-get_unescaped">::get_unescaped &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-item_lookup">::item_lookup &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-item_search">::item_search &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-log">::log &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Element.html#method-c-new">::new &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-c-new">::new &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-options">::options &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-options%3D">::options= &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-prepare_url">::prepare_url &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-send_request">::send_request &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-sign_request">::sign_request &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Ecs.html#method-c-url_encode">::url_encode &mdash; Amazon::Ecs</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-%2F">#/ &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-attributes">#attributes &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-doc">#doc &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-elem">#elem &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-error">#error &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-error_code">#error_code &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-first_item">#first_item &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-get">#get &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-get_array">#get_array &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-get_element">#get_element &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-get_elements">#get_elements &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-get_hash">#get_hash &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-get_unescaped">#get_unescaped &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-has_error%3F">#has_error? &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-is_valid_request%3F">#is_valid_request? &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-item_page">#item_page &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-items">#items &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-search_and_convert">#search_and_convert &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_get_element_and_attributes">#test_get_element_and_attributes &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_get_elements">#test_get_elements &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_get">#test_item_get &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_lookup">#test_item_lookup &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_lookup_with_invalid_request">#test_item_lookup_with_invalid_request &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_lookup_with_no_result">#test_item_lookup_with_no_result &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_search">#test_item_search &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_search_by_author">#test_item_search_by_author &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_search_uk">#test_item_search_uk &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_search_with_invalid_request">#test_item_search_with_invalid_request &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_search_with_no_result">#test_item_search_with_no_result &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_search_with_paging">#test_item_search_with_paging &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_item_search_with_special_characters">#test_item_search_with_special_characters &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_multibyte_search">#test_multibyte_search &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/EcsTest.html#method-i-test_search_and_convert">#test_search_and_convert &mdash; Amazon::EcsTest</a></li>
+		
+			<li><a href="Amazon/Element.html#method-i-to_s">#to_s &mdash; Amazon::Element</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-total_pages">#total_pages &mdash; Amazon::Ecs::Response</a></li>
+		
+			<li><a href="Amazon/Ecs/Response.html#method-i-total_results">#total_results &mdash; Amazon::Ecs::Response</a></li>
+		
+	</ul>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+</body>
 </html>

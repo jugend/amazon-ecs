@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: Amazon::Ecs::Response</title>
+
+	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../../index.html">Home</a>
+          <a href="../../index.html#classes">Classes</a>
+          <a href="../../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../../lib/amazon/ecs_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/amazon/ecs.rb">lib/amazon/ecs.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-doc">#doc</a></li>
+					
+					<li><a href="#method-i-error">#error</a></li>
+					
+					<li><a href="#method-i-error_code">#error_code</a></li>
+					
+					<li><a href="#method-i-first_item">#first_item</a></li>
+					
+					<li><a href="#method-i-has_error%3F">#has_error?</a></li>
+					
+					<li><a href="#method-i-is_valid_request%3F">#is_valid_request?</a></li>
+					
+					<li><a href="#method-i-item_page">#item_page</a></li>
+					
+					<li><a href="#method-i-items">#items</a></li>
+					
+					<li><a href="#method-i-total_pages">#total_pages</a></li>
+					
+					<li><a href="#method-i-total_results">#total_results</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../../CHANGELOG.html">CHANGELOG</a></li>
+				
+					<li class="file"><a href="../../README.html">README</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../../Amazon.html">Amazon</a></li>
+				
+					<li><a href="../../Amazon/Ecs.html">Amazon::Ecs</a></li>
+				
+					<li><a href="../../Amazon/Ecs/Response.html">Amazon::Ecs::Response</a></li>
+				
+					<li><a href="../../Amazon/EcsTest.html">Amazon::EcsTest</a></li>
+				
+					<li><a href="../../Amazon/Element.html">Amazon::Element</a></li>
+				
+					<li><a href="../../Amazon/RequestError.html">Amazon::RequestError</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">Amazon::Ecs::Response</h1>
+
+		<div id="description">
+			<p>
+<a href="Response.html">Response</a> object returned after a REST call to
+<a href="../../Amazon.html">Amazon</a> service.
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(xml)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+XML input is in string format
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 125</span>
+125:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">xml</span>)
+126:         <span class="ruby-ivar">@doc</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>(<span class="ruby-identifier">xml</span>)
+127:         <span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">remove_namespaces!</span>
+128:         <span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">&quot;//*&quot;</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">elem</span><span class="ruby-operator">|</span> <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> }
+129:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="doc-method" class="method-detail ">
+				<a name="method-i-doc"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">doc</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return Nokogiri::XML::Document object.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="doc-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 132</span>
+132:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">doc</span>
+133:         <span class="ruby-ivar">@doc</span>
+134:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="error-method" class="method-detail ">
+				<a name="method-i-error"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">error</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return error message.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="error-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 147</span>
+147:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error</span>
+148:         <span class="ruby-constant">Element</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@doc</span>, <span class="ruby-value str">&quot;error/message&quot;</span>)
+149:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="error-code-method" class="method-detail ">
+				<a name="method-i-error_code"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">error_code</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return error code
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="error-code-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 152</span>
+152:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error_code</span>
+153:         <span class="ruby-constant">Element</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@doc</span>, <span class="ruby-value str">&quot;error/code&quot;</span>)
+154:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="first-item-method" class="method-detail ">
+				<a name="method-i-first_item"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">first_item</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return the first item (<a href="../Element.html">Amazon::Element</a>)
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="first-item-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 162</span>
+162:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_item</span>
+163:         <span class="ruby-identifier">items</span>.<span class="ruby-identifier">first</span>
+164:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="has-error--method" class="method-detail ">
+				<a name="method-i-has_error%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">has_error?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return true if response has an error.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="has-error--source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 142</span>
+142:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_error?</span>
+143:         <span class="ruby-operator">!</span>(<span class="ruby-identifier">error</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">empty?</span>)
+144:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="is-valid-request--method" class="method-detail ">
+				<a name="method-i-is_valid_request%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">is_valid_request?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return true if request is valid.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="is-valid-request--source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 137</span>
+137:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_valid_request?</span>
+138:         (<span class="ruby-ivar">@doc</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;isvalid&quot;</span>).<span class="ruby-identifier">inner_html</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;True&quot;</span>
+139:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="item-page-method" class="method-detail ">
+				<a name="method-i-item_page"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">item_page</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return current page no if :<a
+href="Response.html#method-i-item_page">item_page</a> option is when
+initiating the request.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="item-page-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 167</span>
+167:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">item_page</span>
+168:         <span class="ruby-ivar">@item_page</span> <span class="ruby-operator">||=</span> (<span class="ruby-ivar">@doc</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;itemsearchrequest/itempage&quot;</span>).<span class="ruby-identifier">inner_html</span>.<span class="ruby-identifier">to_i</span>
+169:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="items-method" class="method-detail ">
+				<a name="method-i-items"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">items</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return an array of <a href="../Element.html">Amazon::Element</a> item
+objects.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="items-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 157</span>
+157:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">items</span>
+158:         <span class="ruby-ivar">@items</span> <span class="ruby-operator">||=</span> (<span class="ruby-ivar">@doc</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;item&quot;</span>).<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">item</span>)}
+159:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="total-pages-method" class="method-detail ">
+				<a name="method-i-total_pages"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">total_pages</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return total pages.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="total-pages-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 177</span>
+177:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_pages</span>
+178:         <span class="ruby-ivar">@total_pages</span> <span class="ruby-operator">||=</span> (<span class="ruby-ivar">@doc</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;totalpages&quot;</span>).<span class="ruby-identifier">inner_html</span>.<span class="ruby-identifier">to_i</span>
+179:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="total-results-method" class="method-detail ">
+				<a name="method-i-total_results"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">total_results</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return total results.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="total-results-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amazon/ecs.rb, line 172</span>
+172:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_results</span>
+173:         <span class="ruby-ivar">@total_results</span> <span class="ruby-operator">||=</span> (<span class="ruby-ivar">@doc</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;totalresults&quot;</span>).<span class="ruby-identifier">inner_html</span>.<span class="ruby-identifier">to_i</span>
+174:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

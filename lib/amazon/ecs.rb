@@ -22,7 +22,7 @@
 #++
 
 require 'net/http'
-require 'hpricot'
+require 'nokogiri'
 require 'cgi'
 require 'hmac-sha2'
 require 'base64'
@@ -123,17 +123,20 @@ module Amazon
     class Response
       # XML input is in string format
       def initialize(xml)
-        @doc = Hpricot(xml)
+        @doc = Nokogiri::XML(xml)
+        @doc.remove_namespaces!
+        @doc.xpath("//*").each { |elem| elem.name = elem.name.downcase }
+        @doc.xpath("//@*").each { |att| att.name = att.name.downcase }
       end
 
-      # Return Hpricot object.
+      # Return Nokogiri::XML::Document object.
       def doc
         @doc
       end
 
       # Return true if request is valid.
       def is_valid_request?
-        (@doc/"isvalid").inner_html == "True"
+        Element.get(@doc, "//isvalid") == "True"
       end
 
       # Return true if response has an error.
@@ -143,20 +146,17 @@ module Amazon
 
       # Return error message.
       def error
-        Element.get(@doc, "error/message")
+        Element.get(@doc, "//error/message")
       end
       
       # Return error code
       def error_code
-        Element.get(@doc, "error/code")
+        Element.get(@doc, "//error/code")
       end
       
       # Return an array of Amazon::Element item objects.
       def items
-        unless @items
-          @items = (@doc/"item").collect {|item| Element.new(item)}
-        end
-        @items
+        @items ||= (@doc/"item").collect { |item| Element.new(item) }
       end
       
       # Return the first item (Amazon::Element)
@@ -166,26 +166,17 @@ module Amazon
       
       # Return current page no if :item_page option is when initiating the request.
       def item_page
-        unless @item_page
-          @item_page = (@doc/"itemsearchrequest/itempage").inner_html.to_i
-        end
-        @item_page
+        @item_page ||= Element.get(@doc, "//itempage").to_i
       end
 
       # Return total results.
       def total_results
-        unless @total_results
-          @total_results = (@doc/"totalresults").inner_html.to_i
-        end
-        @total_results
+        @total_results ||= Element.get(@doc, "//totalresults").to_i
       end
       
       # Return total pages.
       def total_pages
-        unless @total_pages
-          @total_pages = (@doc/"totalpages").inner_html.to_i
-        end
-        @total_pages
+        @total_pages ||= Element.get(@doc, "//totalpages").to_i
       end
 
       def marshal_dump
@@ -272,19 +263,19 @@ module Amazon
       end
   end
 
-  # Internal wrapper class to provide convenient method to access Hpricot element value.
+  # Internal wrapper class to provide convenient method to access Nokogiri element value.
   class Element
-    # Pass Hpricot::Elements object
+    # Pass Nokogiri::XML::Element object
     def initialize(element)
       @element = element
     end
 
-    # Returns Hpricot::Elments object    
+    # Returns Nokogiri::XML::Element object    
     def elem
       @element
     end
     
-    # Find Hpricot::Elements matching the given path. Example: element/"author".
+    # Returns a Nokogiri::XML::NodeSet of elements matching the given path. Example: element/"author".
     def /(path)
       elements = @element/path
       return nil if elements.size == 0
@@ -315,22 +306,22 @@ module Amazon
     end
 
     # Get the text value of the given path, leave empty to retrieve current element value.
-    def get(path='')
+    def get(path='.')
       Element.get(@element, path)
     end
     
     # Get the unescaped HTML text of the given path.
-    def get_unescaped(path='')
+    def get_unescaped(path='.')
       Element.get_unescaped(@element, path)
     end
     
     # Get the array values of the given path.
-    def get_array(path='')
+    def get_array(path='.')
       Element.get_array(@element, path)
     end
 
     # Get the children element text values in hash format with the element names as the hash keys.
-    def get_hash(path='')
+    def get_hash(path='.')
       Element.get_hash(@element, path)
     end
     
@@ -340,40 +331,36 @@ module Amazon
     end
     
     # Similar to #get, except an element object must be passed-in.
-    def self.get(element, path='')
+    def self.get(element, path='.')
       return unless element
-      result = element.at(path)
+      result = element.at_xpath(path)
       result = result.inner_html if result
       result
     end
     
     # Similar to #get_unescaped, except an element object must be passed-in.    
-    def self.get_unescaped(element, path='')
+    def self.get_unescaped(element, path='.')
       result = get(element, path)
       CGI::unescapeHTML(result) if result
     end
 
     # Similar to #get_array, except an element object must be passed-in.
-    def self.get_array(element, path='')
+    def self.get_array(element, path='.')
       return unless element
       
       result = element/path
-      if (result.is_a? Hpricot::Elements) || (result.is_a? Array)
-        parsed_result = []
-        result.each {|item|
-          parsed_result << Element.get(item)
-        }
-        parsed_result
+      if (result.is_a? Nokogiri::XML::NodeSet) || (result.is_a? Array)
+        result.collect { |item| Element.get(item) }
       else
         [Element.get(result)]
       end
     end
 
     # Similar to #get_hash, except an element object must be passed-in.
-    def self.get_hash(element, path='')
+    def self.get_hash(element, path='.')
       return unless element
     
-      result = element.at(path)
+      result = element.at_xpath(path)
       if result
         hash = {}
         result = result.children
