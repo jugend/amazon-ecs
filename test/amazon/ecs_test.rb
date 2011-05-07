@@ -150,7 +150,7 @@ class Amazon::EcsTest < Test::Unit::TestCase
 
     first_author = item.get_element("author")
     assert_equal "Dave Thomas", first_author.get
-    assert_equal nil, first_author.attributes['unknown']
+    assert_equal '', first_author.attributes['unknown']
     
     item_height = item.get_element("itemdimensions/height")
     assert_equal "hundredths-inches", item_height.attributes['units']
@@ -161,9 +161,10 @@ class Amazon::EcsTest < Test::Unit::TestCase
     assert(resp.is_valid_request?)
   end
 
-  def test_marshal_dump_request
+  def test_marshal_dump_and_load
     resp = Amazon::Ecs::Response.new(File.read(File.expand_path('../../fixtures/item_search.xml', __FILE__)))
     dumped_resp = Marshal.load(Marshal.dump(resp))
+
     assert_equal resp.doc.to_s,       dumped_resp.doc.to_s
     assert_equal resp.items.size,     dumped_resp.items.size
     assert_equal resp.item_page,      dumped_resp.item_page

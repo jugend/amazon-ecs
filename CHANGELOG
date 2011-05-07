@@ -1,3 +1,7 @@
+1.2.2 2011-05-07
+----------------
+* Add marshal_dump and marshal_load support
+
 1.2.1 2011-02-23
 ----------------
 * Add support for Amazon Italy
