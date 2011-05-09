@@ -2,21 +2,15 @@
  
 Gem::Specification.new do |gem|
   gem.name = %q{amazon-ecs}
-<<<<<<< HEAD
-  gem.version = "1.2.2"
-  gem.date = "2011-05-07"
+  gem.version = "2.0.0"
+  gem.date = "2011-05-09"
   gem.authors = ["Herryanto Siatono"]
-=======
-  gem.version = "1.3.0"
-  gem.date = "2011-04-02"
-  gem.authors = ["Bryan Housel"]
->>>>>>> bhousel/nokogiri
   gem.description = %q{Generic Amazon Product Advertising Ruby API}
-  gem.email = %q{bryan@7thposition.com}
+  gem.email = %q{herryanto@gmail.com}
   gem.extra_rdoc_files = ["README"]
   gem.files = [ "README", "lib/amazon/ecs.rb", "test/amazon/ecs_test.rb" ]
   gem.has_rdoc = true
-  gem.homepage = %q{https://github.com/bhousel/amazon-ecs}
+  gem.homepage = %q{https://github.com/jugend/amazon-ecs}
   gem.rdoc_options = ["--inline-source", "--charset=UTF-8"]
   gem.require_paths = ["lib"]
   gem.rubygems_version = %q{1.3.1}

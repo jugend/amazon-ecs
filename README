@@ -121,6 +121,8 @@ http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 Thanks to Dan Milne (http://da.nmilne.com/) for the signed request patch.
 
+Thanks to Bryan Housel (https://github.com/bhousel/amazon-ecs) for the Nokogiri patch 
+
 == LICENSE
 
 (The MIT License)
