@@ -2,8 +2,8 @@
  
 Gem::Specification.new do |gem|
   gem.name = %q{amazon-ecs}
-  gem.version = "1.2.2"
-  gem.date = "2011-05-07"
+  gem.version = "2.0.0"
+  gem.date = "2011-05-09"
   gem.authors = ["Herryanto Siatono"]
   gem.description = %q{Generic Amazon Product Advertising Ruby API}
   gem.email = %q{herryanto@gmail.com}
@@ -21,14 +21,14 @@ Gem::Specification.new do |gem|
     gem.specification_version = 2
  
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      gem.add_runtime_dependency("hpricot", ">= 0.4")
+      gem.add_runtime_dependency("nokogiri", ">= 1.4.0")
       gem.add_runtime_dependency("ruby-hmac", ">= 0.3.2")
     else
-      gem.add_dependency("hpricot", ">= 0.4")
+      gem.add_dependency("nokogiri", ">= 1.4.0")
       gem.add_dependency("ruby-hmac", ">= 0.3.2")
     end
   else
-    gem.add_dependency("hpricot", ">= 0.4")
+    gem.add_dependency("nokogiri", ">= 1.4.0")
     gem.add_dependency("ruby-hmac", ">= 0.3.2")
   end
 end

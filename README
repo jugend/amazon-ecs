@@ -1,11 +1,11 @@
 == amazon-ecs
 
-Generic Product Advertising Ruby API using Hpricot. Uses Response and 
+Generic Product Advertising Ruby API using Nokogiri. Uses Response and 
 Element wrapper classes for easy access to the REST API XML output.
 
 It is generic, so you can easily extend <tt>Amazon::Ecs</tt> to support 
 other not implemented REST operations; and it is also generic because it just wraps around
-Hpricot element object, instead of providing one-to-one object/attributes to XML elements map.
+Nokogiri element object, instead of providing one-to-one object/attributes to XML elements map.
 
 The idea is as the API evolves, there is a change in REST XML output structure, 
 no updates will be required on <tt>amazon-ecs</tt> gem, 
@@ -71,12 +71,12 @@ instead you just need to update the element path.
       # return an array of Amazon::Element
       authors = item.get_elements('author')
   
-      # return Hpricot::Elements object or nil if not found
+      # return Nokogiri::XML::NodeSet object or nil if not found
       reviews = item/'editorialreview'
   
-      # traverse through Hpricot elements
+      # traverse through Nokogiri elements
       reviews.each do |review|
-        # Getting hash value out of Hpricot element
+        # Getting hash value out of Nokogiri element
         Amazon::Element.get_hash(review) # [:source => ..., :content ==> ...]
     
         # Or to get unescaped HTML values
@@ -120,6 +120,8 @@ http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 == CREDITS
 
 Thanks to Dan Milne (http://da.nmilne.com/) for the signed request patch.
+
+Thanks to Bryan Housel (https://github.com/bhousel/amazon-ecs) for the Nokogiri patch 
 
 == LICENSE
 
