@@ -11,6 +11,8 @@ The idea is as the API evolves, there is a change in REST XML output structure,
 no updates will be required on <tt>amazon-ecs</tt> gem, 
 instead you just need to update the element path. 
 
+For HPricot dependency implementation, please install 1.2.x version or checkout v1.2 branch.
+
 == INSTALLATION
 
   $ gem install amazon-ecs
