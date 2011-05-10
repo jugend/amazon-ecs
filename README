@@ -48,31 +48,31 @@ instead you just need to update the element path.
     # traverse through each item (Amazon::Element)
     res.items.each do |item|
       # retrieve string value using XML path
-      item.get('asin')
-      item.get('itemattributes/title')
+      item.get('ASIN')
+      item.get('ItemAttributes/Title')
 
       # return Amazon::Element instance
-      item_attributes = item.get_element('itemattributes')
-      item_attributes.get('title')
+      item_attributes = item.get_element('ItemAttributes')
+      item_attributes.get('Title')
   
       # return first author or a string array of authors
-      item_attributes.get('author')          # 'Author 1'
-      item_attributes.get_array('author')    # ['Author 1', 'Author 2', ...]
+      item_attributes.get('Author')          # 'Author 1'
+      item_attributes.get_array('Author')    # ['Author 1', 'Author 2', ...]
   
       # return an hash of children text values with the element names as the keys
-      item.get_hash('smallimage') # {:url => ..., :width => ..., :height => ...}
+      item.get_hash('SmallImage') # {:url => ..., :width => ..., :height => ...}
 
       # return the first matching path as Amazon::Element
-      item_height = item.get_element('itemdimensions/height')
+      item_height = item.get_element('ItemDimensions/Height')
       
       # retrieve attributes from Amazon::Element
-      item_height.attributes['units']   # 'hundredths-inches'
+      item_height.attributes['Units']   # 'hundredths-inches'
       
       # return an array of Amazon::Element
-      authors = item.get_elements('author')
+      authors = item.get_elements('Author')
   
       # return Nokogiri::XML::NodeSet object or nil if not found
-      reviews = item/'editorialreview'
+      reviews = item/'EditorialReview'
   
       # traverse through Nokogiri elements
       reviews.each do |review|
@@ -80,13 +80,13 @@ instead you just need to update the element path.
         Amazon::Element.get_hash(review) # [:source => ..., :content ==> ...]
     
         # Or to get unescaped HTML values
-        Amazon::Element.get_unescaped(review, 'source')
-        Amazon::Element.get_unescaped(review, 'content')
+        Amazon::Element.get_unescaped(review, 'Source')
+        Amazon::Element.get_unescaped(review, 'Content')
         
         # Or this way
         el = Amazon::Element.new(review)
-        el.get_unescaped('source')
-        el.get_unescaped('content')
+        el.get_unescaped('Source')
+        el.get_unescaped('Content')
       end
     end
     
@@ -121,10 +121,10 @@ http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 Thanks to Dan Milne (http://da.nmilne.com/) for the signed request patch.
 
-Thanks to Bryan Housel (https://github.com/bhousel/amazon-ecs) for the Nokogiri patch 
+Thanks to Bryan Housel (https://github.com/bhousel/amazon-ecs) for the initial Nokogiri patch 
 
 == LICENSE
 
 (The MIT License)
 
-Copyright (c) 2010 Herryanto Siatono, http://www.siatono.com
+Copyright (c) 2011 Herryanto Siatono, http://www.siatono.com

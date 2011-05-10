@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2009 Herryanto Siatono, Pluit Solutions
+# Copyright (c) 2010 Herryanto Siatono
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -121,12 +121,13 @@ module Amazon
 
     # Response object returned after a REST call to Amazon service.
     class Response
+      
       # XML input is in string format
       def initialize(xml)
         @doc = Nokogiri::XML(xml)
         @doc.remove_namespaces!
-        @doc.xpath("//*").each { |elem| elem.name = elem.name.downcase }
-        @doc.xpath("//@*").each { |att| att.name = att.name.downcase }
+        # @doc.xpath("//*").each { |elem| elem.name = elem.name.downcase }
+        # @doc.xpath("//@*").each { |att| att.name = att.name.downcase }
       end
 
       # Return Nokogiri::XML::Document object.
@@ -136,7 +137,7 @@ module Amazon
 
       # Return true if request is valid.
       def is_valid_request?
-        Element.get(@doc, "//isvalid") == "True"
+        Element.get(@doc, "//IsValid") == "True"
       end
 
       # Return true if response has an error.
@@ -146,17 +147,17 @@ module Amazon
 
       # Return error message.
       def error
-        Element.get(@doc, "//error/message")
+        Element.get(@doc, "//Error/Message")
       end
       
       # Return error code
       def error_code
-        Element.get(@doc, "//error/code")
+        Element.get(@doc, "//Error/Code")
       end
       
       # Return an array of Amazon::Element item objects.
       def items
-        @items ||= (@doc/"item").collect { |item| Element.new(item) }
+        @items ||= (@doc/"Item").collect { |item| Element.new(item) }
       end
       
       # Return the first item (Amazon::Element)
@@ -166,17 +167,17 @@ module Amazon
       
       # Return current page no if :item_page option is when initiating the request.
       def item_page
-        @item_page ||= Element.get(@doc, "//itempage").to_i
+        @item_page ||= Element.get(@doc, "//ItemPage").to_i
       end
 
       # Return total results.
       def total_results
-        @total_results ||= Element.get(@doc, "//totalresults").to_i
+        @total_results ||= Element.get(@doc, "//TotalResults").to_i
       end
       
       # Return total pages.
       def total_pages
-        @total_pages ||= Element.get(@doc, "//totalpages").to_i
+        @total_pages ||= Element.get(@doc, "//TotalPages").to_i
       end
 
       def marshal_dump
@@ -265,6 +266,49 @@ module Amazon
 
   # Internal wrapper class to provide convenient method to access Nokogiri element value.
   class Element
+    class << self
+      # Return the text value of an element.
+      def get(element, path='.')
+        return unless element
+        result = element.at_xpath(path)
+        result = result.inner_html if result
+        result
+      end
+    
+      # Return an unescaped text value of an element.
+      def get_unescaped(element, path='.')
+        result = self.get(element, path)
+        CGI::unescapeHTML(result) if result
+      end
+
+      # Return an array of values based on the given path.
+      def get_array(element, path='.')
+        return unless element
+      
+        result = element/path
+        if (result.is_a? Nokogiri::XML::NodeSet) || (result.is_a? Array)
+          result.collect { |item| self.get(item) }
+        else
+          [self.get(result)]
+        end
+      end
+
+      # Return child element text values of the given path.
+      def get_hash(element, path='.')
+        return unless element
+    
+        result = element.at_xpath(path)
+        if result
+          hash = {}
+          result = result.children
+          result.each do |item|
+            hash[item.name] = item.inner_html
+          end 
+          hash
+        end
+      end
+    end
+    
     # Pass Nokogiri::XML::Element object
     def initialize(element)
       @element = element
@@ -281,17 +325,7 @@ module Amazon
       return nil if elements.size == 0
       elements
     end
-    
-    # Return an array of Amazon::Element matching the given path, or Amazon::Element if there 
-    # is only one element found.
-    #
-    # <b>DEPRECATED:</b> Please use <tt>get_elements</tt> and <tt>get_element</tt> instead.
-    def search_and_convert(path)
-      elements = self.get_elements(path)
-      return elements.first if elements and elements.size == 1
-      elements
-    end
-    
+
     # Return an array of Amazon::Element matching the given path
     def get_elements(path)
       elements = self./(path)
@@ -328,47 +362,6 @@ module Amazon
     def attributes
       return unless self.elem
       self.elem.attributes
-    end
-    
-    # Similar to #get, except an element object must be passed-in.
-    def self.get(element, path='.')
-      return unless element
-      result = element.at_xpath(path)
-      result = result.inner_html if result
-      result
-    end
-    
-    # Similar to #get_unescaped, except an element object must be passed-in.    
-    def self.get_unescaped(element, path='.')
-      result = get(element, path)
-      CGI::unescapeHTML(result) if result
-    end
-
-    # Similar to #get_array, except an element object must be passed-in.
-    def self.get_array(element, path='.')
-      return unless element
-      
-      result = element/path
-      if (result.is_a? Nokogiri::XML::NodeSet) || (result.is_a? Array)
-        result.collect { |item| Element.get(item) }
-      else
-        [Element.get(result)]
-      end
-    end
-
-    # Similar to #get_hash, except an element object must be passed-in.
-    def self.get_hash(element, path='.')
-      return unless element
-    
-      result = element.at_xpath(path)
-      if result
-        hash = {}
-        result = result.children
-        result.each do |item|
-          hash[item.name.to_sym] = item.inner_html
-        end 
-        hash
-      end
     end
     
     def to_s
