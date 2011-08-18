@@ -32,13 +32,13 @@ module Amazon
   class RequestError < StandardError; end
   
   class Ecs
-    SERVICE_URLS = {:us => 'http://webservices.amazon.com/onca/xml?',
-        :uk => 'http://webservices.amazon.co.uk/onca/xml?',
-        :ca => 'http://webservices.amazon.ca/onca/xml?',
-        :de => 'http://webservices.amazon.de/onca/xml?',
-        :jp => 'http://webservices.amazon.co.jp/onca/xml?',
-        :fr => 'http://webservices.amazon.fr/onca/xml?',
-        :it => 'http://webservices.amazon.it/onca/xml?'
+    SERVICE_URLS = {:us => 'http://ecs.amazonaws.com/onca/xml?',
+        :uk => 'http://ecs.amazonaws.co.uk/onca/xml?',
+        :ca => 'http://ecs.amazonaws.ca/onca/xml?',
+        :de => 'http://ecs.amazonaws.de/onca/xml?',
+        :jp => 'http://ecs.amazonaws.co.jp/onca/xml?',
+        :fr => 'http://ecs.amazonaws.fr/onca/xml?',
+        :it => 'http://ecs.amazonaws.it/onca/xml?'
     }
     
     OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||
@@ -235,6 +235,8 @@ module Amazon
         unless secret_key.nil?
           request_to_sign="GET\n#{request_host}\n/onca/xml\n#{qs}"
           signature = "&Signature=#{sign_request(request_to_sign, secret_key)}"
+        else
+          raise Amazon::RequestError, "Must provide aWS_secret_key to sign request"
         end
 
         "#{request_url}#{qs}#{signature}"
