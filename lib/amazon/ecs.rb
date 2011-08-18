@@ -235,6 +235,8 @@ module Amazon
         unless secret_key.nil?
           request_to_sign="GET\n#{request_host}\n/onca/xml\n#{qs}"
           signature = "&Signature=#{sign_request(request_to_sign, secret_key)}"
+        else
+          raise Amazon::RequestError, "Must provide aWS_secret_key to sign request"
         end
 
         "#{request_url}#{qs}#{signature}"
