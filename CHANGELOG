@@ -1,3 +1,8 @@
+2.1.0 2011-08-18
+----------------
+* Update service urls
+* Raise error when aws_secret_key is not found
+
 2.0.0 2011-05-09
 ----------------
 * Replace Hpricot parser with Nokogiri
