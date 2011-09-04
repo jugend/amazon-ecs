@@ -36,7 +36,7 @@ module Amazon
         :uk => 'http://ecs.amazonaws.co.uk/onca/xml?',
         :ca => 'http://ecs.amazonaws.ca/onca/xml?',
         :de => 'http://ecs.amazonaws.de/onca/xml?',
-        :jp => 'http://ecs.amazonaws.co.jp/onca/xml?',
+        :jp => 'http://ecs.amazonaws.jp/onca/xml?',
         :fr => 'http://ecs.amazonaws.fr/onca/xml?',
         :it => 'http://ecs.amazonaws.it/onca/xml?'
     }
