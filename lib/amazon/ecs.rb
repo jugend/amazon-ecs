@@ -36,7 +36,7 @@ module Amazon
         :uk => 'http://ecs.amazonaws.co.uk/onca/xml?',
         :ca => 'http://ecs.amazonaws.ca/onca/xml?',
         :de => 'http://ecs.amazonaws.de/onca/xml?',
-        :jp => 'http://ecs.amazonaws.co.jp/onca/xml?',
+        :jp => 'http://ecs.amazonaws.jp/onca/xml?',
         :fr => 'http://ecs.amazonaws.fr/onca/xml?',
         :it => 'http://ecs.amazonaws.it/onca/xml?'
     }
@@ -101,7 +101,15 @@ module Amazon
       
       self.send_request(opts)
     end    
-          
+
+    # Search a browse node by BrowseNodeId
+    def self.browse_node_lookup(browse_node_id, opts = {})
+      opts[:operation] = 'BrowseNodeLookup'
+      opts[:browse_node_id] = browse_node_id
+      
+      self.send_request(opts)
+    end    
+    
     # Generic send request to ECS REST service. You have to specify the :operation parameter.
     def self.send_request(opts)
       opts = self.options.merge(opts) if self.options
