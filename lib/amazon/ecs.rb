@@ -40,7 +40,7 @@ module Amazon
         :jp => 'http://ecs.amazonaws.jp/onca/xml',
         :fr => 'http://ecs.amazonaws.fr/onca/xml',
         :it => 'http://webservices.amazon.it/onca/xml',
-        :cn => 'http://webservices.amazon.cn1/onca/xml'
+        :cn => 'http://webservices.amazon.cn/onca/xml'
     }
     
     OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||
@@ -222,7 +222,7 @@ module Amazon
         request_url = SERVICE_URLS[country.to_sym]
         raise Amazon::RequestError, "Invalid country '#{country}'" unless request_url
 
-        secret_key = opts.delete(:aWS_secret_key)
+        secret_key = opts.delete(:AWS_secret_key)
         request_host = URI.parse(request_url).host
         
         qs = ''

@@ -15,8 +15,8 @@ class Amazon::EcsTest < Test::Unit::TestCase
   
   Amazon::Ecs.configure do |options|
     options[:response_group] = 'Large'
-    options[:aWS_access_key_id] = AWS_ACCESS_KEY_ID
-    options[:aWS_secret_key] = AWS_SECRET_KEY
+    options[:AWS_access_key_id] = AWS_ACCESS_KEY_ID
+    options[:AWS_secret_key] = AWS_SECRET_KEY
     options[:associate_tag] = 'bookjetty-20'
   end
   
