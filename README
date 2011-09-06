@@ -21,16 +21,22 @@ For HPricot dependency implementation, please install 1.2.x version or checkout 
 
     require 'amazon/ecs'
 	
-    # set the default options; options will be camelized and converted to REST request parameters.
-    Amazon::Ecs.options = {:aWS_access_key_id => '[your access key]'}
-
-    # to generate signed requests include your secret key:
-    Amazon::Ecs.options = {:aWS_access_key_id => '[your developer token]', :aWS_secret_key => '[your secret access key]'}
+    # Set the default options; options will be camelized and converted to REST request parameters.
+    # associate_tag and aWS_access_key_id are required options, associate_tag is required option
+    # since API version 2011-08-01. 
+    #
+    # To sign your request, include aWS_secret_key. 
+    Amazon::Ecs.options = {
+      :associate_tag => '[your associate tag]',
+      :aWS_access_key_id => '[your developer token]',       
+      :aWS_secret_key => '[your secret access key]'
+    }
 
     # alternatively,
     Amazon::Ecs.configure do |options|
-        options[:aWS_access_key_id] = '[your access key]'
-        options[:aWS_secret_key] = '[you secret key]'
+      options[:associate_tag] = '[your associate tag]'
+      options[:aWS_access_key_id] = '[your access key]'
+      options[:aWS_secret_key] = '[you secret key]'
     end
 
     # options provided on method call will merge with the default options

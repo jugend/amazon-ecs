@@ -32,13 +32,15 @@ module Amazon
   class RequestError < StandardError; end
   
   class Ecs
-    SERVICE_URLS = {:us => 'http://ecs.amazonaws.com/onca/xml?',
-        :uk => 'http://ecs.amazonaws.co.uk/onca/xml?',
-        :ca => 'http://ecs.amazonaws.ca/onca/xml?',
-        :de => 'http://ecs.amazonaws.de/onca/xml?',
-        :jp => 'http://ecs.amazonaws.jp/onca/xml?',
-        :fr => 'http://ecs.amazonaws.fr/onca/xml?',
-        :it => 'http://ecs.amazonaws.it/onca/xml?'
+    SERVICE_URLS = {
+        :us => 'http://ecs.amazonaws.com/onca/xml',
+        :uk => 'http://ecs.amazonaws.co.uk/onca/xml',
+        :ca => 'http://ecs.amazonaws.ca/onca/xml',
+        :de => 'http://ecs.amazonaws.de/onca/xml',
+        :jp => 'http://ecs.amazonaws.jp/onca/xml',
+        :fr => 'http://ecs.amazonaws.fr/onca/xml',
+        :it => 'http://webservices.amazon.it/onca/xml',
+        :cn => 'http://webservices.amazon.cn1/onca/xml'
     }
     
     OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||
@@ -47,7 +49,7 @@ module Amazon
     OPENSSL_DIGEST = OpenSSL::Digest::Digest.new( 'sha256' ) if OPENSSL_DIGEST_SUPPORT
     
     @@options = {
-      :version => "2010-10-01",
+      :version => "2011-08-01",
       :service => "AWSECommerceService"
     }
     
@@ -125,6 +127,10 @@ module Amazon
         raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
       end
       Response.new(res.body)
+    end
+    
+    def self.validate_request(opts) 
+      raise Amazon::RequestError, "" if opts[:associate_tag]
     end
 
     # Response object returned after a REST call to Amazon service.
@@ -243,11 +249,9 @@ module Amazon
         unless secret_key.nil?
           request_to_sign="GET\n#{request_host}\n/onca/xml\n#{qs}"
           signature = "&Signature=#{sign_request(request_to_sign, secret_key)}"
-        else
-          raise Amazon::RequestError, "Must provide aWS_secret_key to sign request"
         end
 
-        "#{request_url}#{qs}#{signature}"
+        "#{request_url}?#{qs}#{signature}"
       end
       
       def self.url_encode(string)

@@ -17,7 +17,11 @@ class Amazon::EcsTest < Test::Unit::TestCase
     options[:response_group] = 'Large'
     options[:aWS_access_key_id] = AWS_ACCESS_KEY_ID
     options[:aWS_secret_key] = AWS_SECRET_KEY
+    options[:associate_tag] = 'bookjetty-20'
   end
+  
+  # To print debug information
+  # Amazon::Ecs.debug = true
 
   # Test item_search
   def test_item_search
@@ -31,7 +35,6 @@ class Amazon::EcsTest < Test::Unit::TestCase
   end
   
   def test_item_search_with_special_characters
-      Amazon::Ecs.debug = true
     resp = Amazon::Ecs.item_search('()*&^%$')
     assert resp.is_valid_request?,
       "Not a valid request"
@@ -184,5 +187,19 @@ class Amazon::EcsTest < Test::Unit::TestCase
     assert_equal resp.item_page,      dumped_resp.item_page
     assert_equal resp.total_results,  dumped_resp.total_results
     assert_equal resp.total_pages,    dumped_resp.total_pages
+  end
+  
+  def test_other_service_urls
+    Amazon::Ecs::SERVICE_URLS.each do |key, value|
+      next if key == :us
+      
+      begin
+        resp = Amazon::Ecs.item_search('ruby', :country => key)
+        assert resp, "#{key} service url (#{value}) is invalid"
+      rescue => e
+        assert false, "'#{key}' service url (#{value}) is invalid. Error: #{e}"
+        puts e.backtrace
+      end
+    end
   end
 end
