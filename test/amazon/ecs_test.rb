@@ -2,8 +2,9 @@
 
 require 'rubygems'
 require 'test/unit'
+require 'redgreen'
 
-require './' + File.dirname(__FILE__) + '/../../lib/amazon/ecs'
+require File.expand_path(File.dirname(__FILE__) + '/../../lib/amazon/ecs')
 
 class Amazon::EcsTest < Test::Unit::TestCase
 
