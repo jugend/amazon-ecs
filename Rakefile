@@ -14,9 +14,11 @@ rd = Rake::RDocTask.new("rdoc") { |rdoc|
   rdoc.rdoc_files.include('test/**/*.rb')
 }
 
-desc "Run the unit tests in test" 
+desc "Run the unit tests in test"
 Rake::TestTask.new(:test) do |t|
-  t.libs << "test" 
+  t.libs << "test"
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end
+
+task :default => :test

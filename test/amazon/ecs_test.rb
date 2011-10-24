@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'test/unit'
-require 'redgreen'
+# require 'redgreen'
 
 require File.expand_path(File.dirname(__FILE__) + '/../../lib/amazon/ecs')
 
