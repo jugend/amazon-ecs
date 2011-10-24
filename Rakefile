@@ -8,8 +8,8 @@ desc "Create the RDOC html files"
 rd = Rake::RDocTask.new("rdoc") { |rdoc|
   rdoc.rdoc_dir = 'doc'
   rdoc.title    = "amazon-ecs"
-  rdoc.options << '--line-numbers' << '--inline-source' << '--main' << 'README'
-  rdoc.rdoc_files.include('README', 'CHANGELOG')
+  rdoc.options << '--line-numbers' << '--inline-source' << '--main' << 'Readme.rdoc'
+  rdoc.rdoc_files.include('Readme.rdoc', 'CHANGELOG')
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.rdoc_files.include('test/**/*.rb')
 }
