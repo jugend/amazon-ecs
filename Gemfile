@@ -5,4 +5,5 @@ gem 'ruby-hmac'
 
 group :dev do
   gem 'rake'
+  gem 'mynyml-redgreen'
 end

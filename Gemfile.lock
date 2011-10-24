@@ -1,0 +1,18 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    mynyml-redgreen (0.7.1)
+      term-ansicolor (>= 1.0.4)
+    nokogiri (1.5.0)
+    rake (0.9.2.2)
+    ruby-hmac (0.4.0)
+    term-ansicolor (1.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mynyml-redgreen
+  nokogiri
+  rake
+  ruby-hmac
