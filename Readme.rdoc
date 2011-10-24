@@ -44,6 +44,9 @@ For HPricot dependency implementation, please install 1.2.x version or checkout 
     
     # search amazon uk
     res = Amazon::Ecs.item_search('ruby', :country => 'uk')
+
+    # search all items, default search index is Books
+    res = Amazon::Ecs.item_search('ruby', :search_index => 'All')
     
     # some common response object methods
     res.is_valid_request?     # return true if request is valid

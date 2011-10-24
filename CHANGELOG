@@ -1,3 +1,10 @@
+2.2.1 2011-10-25
+----------------
+* Add Gemfile
+* Rake, run test task by default
+* Rename README to README.rdoc
+* Upate README, add search index information
+
 2.2.0 2011-9-06
 ----------------
 * Upgrade to Product Advertising API version to 2011-08-01
