@@ -1,34 +1,34 @@
 # -*- encoding: utf-8 -*-
- 
+$:.push File.expand_path("../lib", __FILE__)
+require 'amazon/ecs'
+
 Gem::Specification.new do |gem|
   gem.name = %q{amazon-ecs}
-  gem.version = "2.2.1"
-  gem.date = "2011-10-25"
+  gem.version = Amazon::Ecs::VERSION
+  gem.platform = Gem::Platform::RUBY
   gem.authors = ["Herryanto Siatono"]
-  gem.description = %q{Generic Amazon Product Advertising Ruby API}
   gem.email = %q{herryanto@gmail.com}
-  gem.extra_rdoc_files = ["Readme.rdoc"]
-  gem.files = [ "Readme.rdoc", "lib/amazon/ecs.rb", "test/amazon/ecs_test.rb" ]
-  gem.has_rdoc = true
   gem.homepage = %q{https://github.com/jugend/amazon-ecs}
-  gem.rdoc_options = ["--inline-source", "--charset=UTF-8"]
+  gem.summary = %q{Generic Amazon Product Advertising Ruby API.}
+  gem.description = %q{Generic Amazon Product Advertising Ruby API.}
+
+  gem.files = `git ls-files`.split("\n")
+  gem.test_files = `git ls-files -- test/*`.split("\n")
   gem.require_paths = ["lib"]
-  gem.rubygems_version = %q{1.3.1}
-  gem.summary = %q{Generic Amazon Product Advertising Ruby API}
  
   if gem.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     gem.specification_version = 2
  
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      gem.add_runtime_dependency("nokogiri", ">= 1.4.0")
-      gem.add_runtime_dependency("ruby-hmac", ">= 0.3.2")
+      gem.add_runtime_dependency("nokogiri", "~> 1.4")
+      gem.add_runtime_dependency("ruby-hmac", "~> 0.3")
     else
-      gem.add_dependency("nokogiri", ">= 1.4.0")
-      gem.add_dependency("ruby-hmac", ">= 0.3.2")
+      gem.add_dependency("nokogiri", "~> 1.4")
+      gem.add_dependency("ruby-hmac", "~> 0.3")
     end
   else
-    gem.add_dependency("nokogiri", ">= 1.4.0")
-    gem.add_dependency("ruby-hmac", ">= 0.3.2")
+    gem.add_dependency("nokogiri", "~> 1.4")
+    gem.add_dependency("ruby-hmac", "~> 0.3")
   end
 end

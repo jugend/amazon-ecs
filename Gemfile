@@ -1,7 +1,7 @@
 source :rubygems
 
-gem 'nokogiri'
-gem 'ruby-hmac'
+gem 'nokogiri', '~> 1.4'
+gem 'ruby-hmac', '~> 0.3'
 
 group :dev do
   gem 'rake'

@@ -1,3 +1,10 @@
+2.2.2 2011-11-18
+----------------
+* Add VERSION constant in Amazon::Ecs
+* Update dependent gems version in Gemfile
+* Add Gemfile as part of the gem content
+* Update amazon-ecs.gemspec
+
 2.2.1 2011-10-25
 ----------------
 * Add Gemfile
