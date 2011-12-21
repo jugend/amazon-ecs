@@ -141,7 +141,7 @@ module Amazon
       
       # XML input is in string format
       def initialize(xml)
-        @doc = Nokogiri::XML(xml)
+        @doc = Nokogiri::XML(xml, nil, 'UTF-8')
         @doc.remove_namespaces!
         # @doc.xpath("//*").each { |elem| elem.name = elem.name.downcase }
         # @doc.xpath("//@*").each { |att| att.name = att.name.downcase }
