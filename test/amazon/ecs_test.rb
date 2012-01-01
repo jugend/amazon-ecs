@@ -62,7 +62,7 @@ class Amazon::EcsTest < Test::Unit::TestCase
       "Error string different from expected"
   end
   
-  def test_item_search_uk
+  def test_utf8_encoding
     resp = Amazon::Ecs.item_search('ruby', :country => :uk)
     assert resp.is_valid_request?, 
       "Not a valid request"
