@@ -181,6 +181,43 @@ class Amazon::EcsTest < Test::Unit::TestCase
       "Not a valid request"
   end
 
+  def test_similarity_lookup_returns_asin
+    resp = Amazon::Ecs.similarity_lookup("0974514055")
+
+    assert !resp.first_item.get("ASIN").nil?,
+      "ASIN not present"
+  end
+
+  def test_similarity_lookup_is_valid
+    resp = Amazon::Ecs.similarity_lookup("0974514055")
+
+    assert resp.is_valid_request?,
+      "Not a valid request"
+  end
+
+  def test_similarity_lookup_with_no_result
+    resp = Amazon::Ecs.similarity_lookup("abc")
+
+    assert resp.is_valid_request?,
+      "Not a valid request"
+    assert_match /There are no similar items for this ASIN: ABC/, resp.error,
+      "Items were returned, when none were expected"
+  end
+
+  def test_similarity_lookup_with_invalid_request
+    resp = Amazon::Ecs.similarity_lookup(nil)
+
+    assert_equal resp.first_item, nil,
+      "Items were returned when none were expected"
+  end
+
+  def test_similarity_lookup_with_multiple_items
+    resp = Amazon::Ecs.similarity_lookup("0974514055,1934356549")
+
+    assert !resp.first_item.get("ASIN").nil?
+      "No item was return when one was expected"
+  end
+
   def test_marshal_dump_and_load
     resp = Amazon::Ecs::Response.new(File.read(File.expand_path('../../fixtures/item_search.xml', __FILE__)))
     dumped_resp = Marshal.load(Marshal.dump(resp))

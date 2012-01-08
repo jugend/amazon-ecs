@@ -82,7 +82,17 @@ module Amazon
       raise ArgumentError, "Block is required." unless block_given?
       yield @@options
     end
-    
+  
+    # Where item_ids is a comma seperated string of ASINs
+    # e.g "12345,678,456,789"
+    def self.similarity_lookup(item_ids, opts = {})
+      opts[:operation] = 'SimilarityLookup'
+
+      opts[:item_id] = item_ids
+
+      self.send_request(opts)
+    end
+
     # Search amazon items with search terms. Default search index option is 'Books'.
     # For other search type other than keywords, please specify :type => [search type param name].
     def self.item_search(terms, opts = {})
