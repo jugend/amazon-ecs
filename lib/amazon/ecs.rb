@@ -89,6 +89,7 @@ module Amazon
       opts[:operation] = 'SimilarityLookup'
 
       opts[:item_id] = item_ids
+      opts[:similarity_type] ||= "Intersection"
 
       self.send_request(opts)
     end
