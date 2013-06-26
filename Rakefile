@@ -5,7 +5,7 @@ require 'rubygems/package_task'
 require 'rake/packagetask'
 
 desc "Create the RDOC html files"
-rd = Rake::RDocTask.new("rdoc") { |rdoc|
+rd = RDoc::Task.new { |rdoc|
   rdoc.rdoc_dir = 'doc'
   rdoc.title    = "amazon-ecs"
   rdoc.options << '--line-numbers' << '--inline-source' << '--main' << 'Readme.rdoc'
