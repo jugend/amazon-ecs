@@ -1,7 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rdoc/task'
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 require 'rake/packagetask'
 
 desc "Create the RDOC html files"
