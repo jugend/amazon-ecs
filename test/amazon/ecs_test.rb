@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../../lib/amazon/ecs')
 
 class Amazon::EcsTest < Test::Unit::TestCase
 
-  AWS_ACCESS_KEY_ID = '0XQXXC6YV2C85DX1BF02'
-  AWS_SECRET_KEY = 'fwLOn0Y/IUXEM8Hk49o7QJV+ryOscbhXRb6CmA5l'
+  AWS_ACCESS_KEY_ID = ''
+  AWS_SECRET_KEY = ''
   
   raise "Please specify set your AWS_ACCESS_KEY_ID" if AWS_ACCESS_KEY_ID.empty?
   raise "Please specify set your AWS_SECRET_KEY" if AWS_SECRET_KEY.empty?
