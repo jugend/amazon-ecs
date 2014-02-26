@@ -49,7 +49,7 @@ module Amazon
     OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||
                              OpenSSL::Digest.constants.include?( :SHA256 )
     
-    OPENSSL_DIGEST = OpenSSL::Digest::Digest.new( 'sha256' ) if OPENSSL_DIGEST_SUPPORT
+    OPENSSL_DIGEST = OpenSSL::Digest.new( 'sha256' ) if OPENSSL_DIGEST_SUPPORT
     
     @@options = {
       :version => "2011-08-01",
