@@ -1,3 +1,8 @@
+2.2.5 2014-03-08
+----------------
+* Replaced Digest::Digest deprecated call 
+* Read AWS_ACCESS_KEY_ID and AWS_SECRET_KEY env variables when running test
+
 2.2.4 2012-01-01
 ----------------
 * Parse with UTF-8 encoding, happy new year :)
