@@ -58,6 +58,14 @@ module Amazon
 
     @@debug = false
 
+    @@proxy = {
+      :use_proxy => false,
+      :proxy_host => "",
+      :proxy_port => "",
+      :proxy_user => "",
+      :proxy_pass => ""
+    }
+
     # Default search options
     def self.options
       @@options
@@ -76,6 +84,16 @@ module Amazon
     # Set debug flag to true or false.
     def self.debug=(dbg)
       @@debug = dbg
+    end
+
+    # Proxy options
+    def self.proxy
+      @@proxy
+    end
+
+    # Set proxy options
+    def self.proxy=(opts)
+      @@proxy = opts
     end
 
     def self.configure(&proc)
@@ -125,7 +143,15 @@ module Amazon
       request_url = prepare_url(opts)
       log "Request URL: #{request_url}"
 
-      res = Net::HTTP.get_response(URI::parse(request_url))
+      # If flag is True, using proxy.
+      if proxy[:use_proxy]
+        log "Using proxy: #{proxy}"
+        res = Net::HTTP.Proxy(proxy[:proxy_host], proxy[:proxy_port],
+                              proxy[:proxy_user], proxy[:proxy_pass]).get_response(URI::parse(request_url))
+      else
+        res = Net::HTTP.get_response(URI::parse(request_url))
+      end
+
       unless res.kind_of? Net::HTTPSuccess
         raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
       end
