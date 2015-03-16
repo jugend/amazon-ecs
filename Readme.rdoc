@@ -9,8 +9,6 @@ structure through an XML path instead of an object attribute. The idea is the AP
 there will be changes to the XML schema. With Amazon ECS, your code will still work, only
 the XML path needs to be updated.
 
-For HPricot dependency implementation, please install 1.2.x version or checkout v1.2 branch.
-
 == INSTALLATION
 
   $ gem install amazon-ecs
