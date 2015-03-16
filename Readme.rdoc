@@ -139,4 +139,4 @@ Thanks to Bryan Housel (https://github.com/bhousel/amazon-ecs) for the initial N
 
 (The MIT License)
 
-Copyright (c) 2011 Herryanto Siatono, http://www.siatono.com
+Copyright (c) 2015 Herryanto Siatono, http://www.siatono.com
