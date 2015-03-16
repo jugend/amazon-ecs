@@ -1,15 +1,13 @@
 == amazon-ecs
 
-Generic Product Advertising Ruby API using Nokogiri. Uses Response and 
-Element wrapper classes for easy access to the REST API XML output.
+Amazon ECS is a generic Product Advertising Ruby API. You can easily extend the library to support 
+any of the REST operations.
 
-It is generic, so you can easily extend <tt>Amazon::Ecs</tt> to support 
-other not implemented REST operations; and it is also generic because it just wraps around
-Nokogiri element object, instead of providing one-to-one object/attributes to XML elements map.
+The library wraps around Nokogiri element object, and it provides access to the XML response structure through XML path,
+instead of object attribute.
 
-The idea is as the API evolves, there is a change in REST XML output structure, 
-no updates will be required on <tt>amazon-ecs</tt> gem, 
-instead you just need to update the element path. 
+The idea is the API will be constantly updated, and there will be changes to the XML schema, with Amazon ECS 
+you would not have to update the library as the API evolves.
 
 For HPricot dependency implementation, please install 1.2.x version or checkout v1.2 branch.
 
@@ -131,12 +129,8 @@ http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 == CREDITS
 
-Thanks to Dan Milne (http://da.nmilne.com/) for the signed request patch.
-
-Thanks to Bryan Housel (https://github.com/bhousel/amazon-ecs) for the initial Nokogiri patch 
+Thanks to Dan Milne and Bryan Houselfor the pull requests.
 
 == LICENSE
 
-(The MIT License)
-
-Copyright (c) 2015 Herryanto Siatono, http://www.siatono.com
+[The MIT License](http://opensource.org/licenses/MIT)
