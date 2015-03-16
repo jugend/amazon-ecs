@@ -1,12 +1,13 @@
 == amazon-ecs
 
-Amazon ECS is a generic Product Advertising Ruby API. 
+Amazon ECS is a generic Ruby wrapper to access Amazon Product Advertising API.
 
 You can easily extend the library to support any of the operations supported by the API. 
 
-The library wraps around Nokogiri element object, and it provides access to the XML response 
+The library wraps around Nokogiri element object. It provides an easy access to the XML response 
 structure through an XML path instead of an object attribute. The idea is the API evolves,
-there will be changes to the XML schema. With Amazon ECS, the library would still work.
+there will be changes to the XML schema. With Amazon ECS, your code will still work, only
+the XML path need to be updated.
 
 For HPricot dependency implementation, please install 1.2.x version or checkout v1.2 branch.
 
