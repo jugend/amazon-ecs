@@ -1,13 +1,12 @@
 == amazon-ecs
 
-Amazon ECS is a generic Product Advertising Ruby API. You can easily extend the library to support 
-any of the REST operations.
+Amazon ECS is a generic Product Advertising Ruby API. 
 
-The library wraps around Nokogiri element object, and it provides access to the XML response structure through XML path,
-instead of object attribute.
+You can easily extend the library to support any of the operations supported by the API. 
 
-The idea is the API will be constantly updated, and there will be changes to the XML schema, with Amazon ECS 
-you would not have to update the library as the API evolves.
+The library wraps around Nokogiri element object, and it provides access to the XML response 
+structure through an XML path instead of an object attribute. The idea is the API evolves,
+there will be changes to the XML schema. With Amazon ECS, the library would still work.
 
 For HPricot dependency implementation, please install 1.2.x version or checkout v1.2 branch.
 
@@ -116,12 +115,8 @@ For HPricot dependency implementation, please install 1.2.x version or checkout 
     
     Amazon::Ecs.other_operation('[item_id]', :param1 => 'abc', :param2 => 'xyz')
 
-Refer to Amazon Product Advertising API documentation for more information 
-on other valid operations, request parameters and the XML response output:
+Refer to the Amazon Product Advertising API documentation for more information:
 https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
-
-To get a sample of Amazon REST XML response output, use AWSZone.com scratch pad:
-http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 == SOURCE CODES
 
@@ -129,8 +124,8 @@ http://www.awszone.com/scratchpads/aws/ecs.us/index.aws
 
 == CREDITS
 
-Thanks to Dan Milne and Bryan Houselfor the pull requests.
+Thanks to Dan Milne and Bryan Housel for the pull requests.
 
 == LICENSE
 
-[The MIT License](http://opensource.org/licenses/MIT)
+[The MIT License]
