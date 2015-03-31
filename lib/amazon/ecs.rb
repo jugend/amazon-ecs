@@ -32,7 +32,7 @@ module Amazon
   class RequestError < StandardError; end
 
   class Ecs
-    VERSION = '2.3.0'
+    VERSION = '2.3.1'
 
     SERVICE_URLS = {
         :us => 'http://ecs.amazonaws.com/onca/xml',
@@ -44,7 +44,8 @@ module Amazon
         :it => 'http://webservices.amazon.it/onca/xml',
         :cn => 'http://webservices.amazon.cn/onca/xml',
         :es => 'http://webservices.amazon.es/onca/xml',
-        :in => 'http://webservices.amazon.in/onca/xml'
+        :in => 'http://webservices.amazon.in/onca/xml',
+        :br => 'http://webservices.amazon.com.br/onca/xml'
     }
 
     OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||

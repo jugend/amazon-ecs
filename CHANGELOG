@@ -1,3 +1,7 @@
+2.3.1 2015-04-01
+----------------
+* Add support for Amazon IN and BR
+
 2.3.0 2014-12-05
 ----------------
 * Replace deprecated URI::escape with CGI::escape
