@@ -12,7 +12,7 @@ the XML path needs to be updated.
 ## Installation
 
 ```shell
-$ gem install amazon-ecs
+gem install amazon-ecs
 ```
 
 ## How to use it
