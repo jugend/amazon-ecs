@@ -11,10 +11,13 @@ the XML path needs to be updated.
 
 == INSTALLATION
 
+```shell
   $ gem install amazon-ecs
+```
 
 == EXAMPLE
 
+```ruby
     require 'amazon/ecs'
     
     # Configure your access key, secret key and other options such as the associate tag.
@@ -113,6 +116,7 @@ the XML path needs to be updated.
     end
     
     Amazon::Ecs.other_operation('[item_id]', :param1 => 'abc', :param2 => 'xyz')
+```
 
 Refer to the Amazon Product Advertising API documentation for more information:
 https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
