@@ -9,13 +9,13 @@ structure through an XML path instead of an object attribute. The idea is the AP
 there will be changes to the XML schema. With Amazon ECS, your code will still work, only
 the XML path needs to be updated.
 
-## INSTALLATION
+## Installation
 
 ```shell
 $ gem install amazon-ecs
 ```
 
-## EXAMPLE
+## How to use it
 
 ```ruby
 require 'amazon/ecs'
@@ -121,14 +121,14 @@ Amazon::Ecs.other_operation('[item_id]', :param1 => 'abc', :param2 => 'xyz')
 Refer to the Amazon Product Advertising API documentation for more information:
 https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
 
-## SOURCE CODES
+## Source Codes
 
 * http://github.com/jugend/amazon-ecs
 
-## CREDITS
+## Credits
 
 Thanks to Dan Milne and Bryan Housel for the pull requests.
 
-## LICENSE
+## License
 
 [The MIT License]
