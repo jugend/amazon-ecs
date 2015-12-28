@@ -40,7 +40,7 @@ end
 #  :AWS_secret_key => '[your secret access key]'
 # }
 
-# options provided on method call will be merged with the default options
+# options passed with the method call will be merged with the default options
 res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
 
 # search amazon uk
