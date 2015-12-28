@@ -21,7 +21,7 @@ gem install amazon-ecs
 require 'amazon/ecs'
 
 # Configure your access key, secret key and other options such as the associate tag.
-# Options set in the configure block will be merged with the the default options, e.g.
+# Options set in the configure block will be merged with the pre-configured default options, i.e.
 #  options[:version] => "2011-08-01"
 #  options[:service] => "AWSECommerceService"
 Amazon::Ecs.configure do |options|
