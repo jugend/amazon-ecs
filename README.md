@@ -125,8 +125,8 @@ end
 Amazon::Ecs.similarity_lookup('[item_id]', :param1 => 'abc', :param2 => 'xyz')
 ```
 
-Refer to Amazon Product Advertising API documentation for more information:
-https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
+Refer to [Amazon Product Advertising API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html) documentation for more information on the operations and request parameters supported.  
+
 
 ## Source Codes
 
