@@ -103,7 +103,7 @@ res.items.each do |item|
 end
 ```
 
-For other operations other than `item_search` and `item_lookup`, you could use `Amazon::Ecs.send_request`, e.g.
+For operations other than `item_search` and `item_lookup`, you could use `Amazon::Ecs.send_request`, e.g.
 ```ruby
 Amazon::Ecs.send_request(:operation => 'BrowseNodeLookup', :browse_node_id => 123)
 Amazon::Ecs.send_request(:operation => 'SimilarityLookup',:item_id => 12345678)
