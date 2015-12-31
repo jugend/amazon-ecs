@@ -101,14 +101,20 @@ res.items.each do |item|
     el.get_unescaped('Content')
   end
 end
+```
 
-# Extend Amazon::Ecs, replace 'other_operation' with the appropriate name
+For other operations other than `item_search` and `item_lookup`, you could use `Amazon::Ecs.send_request`, e.g.
+```ruby
+Amazon::Ecs.send_request(:operation => 'BrowseNodeLookup', :browse_node_id => 123)
+Amazon::Ecs.send_request(:operation => 'SimilarityLookup',:item_id => 12345678)
+```
+
+Or you could extend `Amazon::Ecs`:
+```ruby
 module Amazon
   class Ecs
-    def self.other_operation(item_id, opts={})
-      opts[:operation] = '[other valid operation supported by Product Advertising API]'
-      
-      # setting default option value
+    def self.similarity_lookup(item_id, opts={})
+      opts[:operation] = 'SimilarityLookup'
       opts[:item_id] = item_id
     
       self.send_request(opts)
@@ -116,7 +122,7 @@ module Amazon
   end
 end
 
-Amazon::Ecs.other_operation('[item_id]', :param1 => 'abc', :param2 => 'xyz')
+Amazon::Ecs.similarity_lookup('[item_id]', :param1 => 'abc', :param2 => 'xyz')
 ```
 
 Refer to Amazon Product Advertising API documentation for more information:
