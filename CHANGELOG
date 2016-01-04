@@ -1,3 +1,7 @@
+2.3.2 2015-01-04
+----------------
+* Add support for Amazon MX
+
 2.3.1 2015-04-01
 ----------------
 * Add support for Amazon IN and BR
@@ -8,7 +12,7 @@
 
 2.2.5 2014-03-08
 ----------------
-* Replaced Digest::Digest deprecated call 
+* Replaced Digest::Digest deprecated call
 * Read AWS_ACCESS_KEY_ID and AWS_SECRET_KEY env variables when running test
 
 2.2.4 2012-01-01
@@ -103,7 +107,7 @@
 0.5.1 2007-02-08
 ----------------
 * Fixed Amazon Japan and France URL error
-* Removed opts.delete(:search_index) from item_lookup, SearchIndex param is allowed 
+* Removed opts.delete(:search_index) from item_lookup, SearchIndex param is allowed
   when looking for a book with IdType other than the ASIN.
 * Check for defined? RAILS_DEFAULT_LOGGER to avoid exception for non-rails ruby app
 * Added check for LOGGER constant if RAILS_DEFAULT_LOGGER is not defined
