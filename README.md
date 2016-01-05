@@ -66,9 +66,9 @@ res.items.each do |item|
   item_attributes = item.get_element('ItemAttributes')
   item_attributes.get('Title')
 
-  # return first author or a string array of authors
-  item_attributes.get('Author')          # 'Author 1'
+  item_attributes.get_unescaped('Title') # unescape HTML entities
   item_attributes.get_array('Author')    # ['Author 1', 'Author 2', ...]
+  item_attributes.get('Author')          # 'Author 1'
 
   # return an hash of children text values with the element names as the keys
   item.get_hash('SmallImage') # {:url => ..., :width => ..., :height => ...}
@@ -83,16 +83,14 @@ res.items.each do |item|
   # 1) return an array of Amazon::Element
   reviews = item.get_elements('EditorialReview')
   reviews.each do |review|
-    el.get_unescaped('Source')
-    el.get_unescaped('Content')
+    el.get('Content')
   end
 
   # 2) return Nokogiri::XML::NodeSet object or nil if not found
   reviews = item/'EditorialReview'
   reviews.each do |review|
     el = Amazon::Element.new(review)
-    el.get_unescaped('Source')
-    el.get_unescaped('Content')
+    el.get('Content')
   end
 end
 ```
