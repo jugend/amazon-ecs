@@ -32,7 +32,7 @@ module Amazon
   class RequestError < StandardError; end
 
   class Ecs
-    VERSION = '2.3.2'
+    VERSION = '2.4.0'
 
     SERVICE_URLS = {
         :us => 'http://webservices.amazon.com/onca/xml',
@@ -55,7 +55,7 @@ module Amazon
     OPENSSL_DIGEST = OpenSSL::Digest.new( 'sha256' ) if OPENSSL_DIGEST_SUPPORT
 
     @@options = {
-      :version => "2011-08-01",
+      :version => "2013-08-01",
       :service => "AWSECommerceService"
     }
 
@@ -110,10 +110,18 @@ module Amazon
       self.send_request(opts)
     end
 
-    # Search a browse node by BrowseNodeId
+    # Browse node lookup by node ID.
     def self.browse_node_lookup(browse_node_id, opts = {})
       opts[:operation] = 'BrowseNodeLookup'
       opts[:browse_node_id] = browse_node_id
+
+      self.send_request(opts)
+    end
+
+    # Similarity lookup by item ID.
+    def self.similarity_lookup(item_id, opts = {})
+      opts[:operation] = 'SimilarityLookup'
+      opts[:item_id] = item_id
 
       self.send_request(opts)
     end
@@ -153,6 +161,26 @@ module Amazon
       # Return Nokogiri::XML::Document object.
       def doc
         @doc
+      end
+
+      # Return a Nokogiri::XML::NodeSet of elements matching the given path.
+      def /(path)
+        elements = @doc/path
+        return nil if elements.size == 0
+        elements
+      end
+
+      # Return an array of Amazon::Element matching the given path
+      def get_elements(path)
+        elements = self./(path)
+        return unless elements
+        elements = elements.map{|element| Element.new(element)}
+      end
+
+      # Return the first element found
+      def get_element(path)
+        elements = get_elements(path)
+        elements[0] if elements
       end
 
       # Return true if request is valid.
@@ -334,12 +362,12 @@ module Amazon
       @element = element
     end
 
-    # Returns Nokogiri::XML::Element object
+    # Return Nokogiri::XML::Element object
     def elem
       @element
     end
 
-    # Returns a Nokogiri::XML::NodeSet of elements matching the given path. Example: element/"author".
+    # Return a Nokogiri::XML::NodeSet of elements matching the given path. Example: element/"author".
     def /(path)
       elements = @element/path
       return nil if elements.size == 0

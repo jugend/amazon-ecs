@@ -2,9 +2,9 @@
 
 `amazon-ecs` is a generic Ruby wrapper to access Amazon Product Advertising API.
 
-You can easily extend the library to support any of the operations supported by the API. 
+You can easily extend the library to support any of the operations supported by the API.
 
-The library wraps around Nokogiri element object. It provides an easy access to the XML response 
+The library wraps around Nokogiri element object. It provides an easy access to the XML response
 structure through an XML path instead of an object attribute. The idea is the API evolves,
 there will be changes to the XML schema. With `amazon-ecs`, your code will still work, only
 the XML path needs to be updated.
@@ -21,9 +21,9 @@ gem install amazon-ecs
 require 'amazon/ecs'
 
 # Configure your access key, secret key and other options such as the associate tag.
-# Options set in the configure block will be merged with the pre-configured default 
+# Options set in the configure block will be merged with the pre-configured default
 # options, i.e.
-#  options[:version] => "2011-08-01"
+#  options[:version] => "2013-08-01"
 #  options[:service] => "AWSECommerceService"
 Amazon::Ecs.configure do |options|
   options[:AWS_access_key_id] = '[your access key]'
@@ -76,10 +76,10 @@ res.items.each do |item|
 
   # return the first matching path as Amazon::Element
   item_height = item.get_element('ItemDimensions/Height')
-  
+
   # retrieve attributes from Amazon::Element
   item_height.attributes['Units']   # 'hundredths-inches'
-  
+
   # return an array of Amazon::Element
   authors = item.get_elements('Author')
 
@@ -94,7 +94,7 @@ res.items.each do |item|
     # Or to get unescaped HTML values
     Amazon::Element.get_unescaped(review, 'Source')
     Amazon::Element.get_unescaped(review, 'Content')
-    
+
     # Or this way
     el = Amazon::Element.new(review)
     el.get_unescaped('Source')
@@ -103,26 +103,39 @@ res.items.each do |item|
 end
 ```
 
-For operations other than `item_search` and `item_lookup`, you could use `Amazon::Ecs.send_request`, e.g.
+Other Operations
+
 ```ruby
-Amazon::Ecs.send_request(:operation => 'BrowseNodeLookup', :browse_node_id => 123)
-Amazon::Ecs.send_request(:operation => 'SimilarityLookup',:item_id => 12345678)
+# Browse node lookup
+resp = Amazon::ECS.browse_node_lookup("17")
+
+nodes = resp.get_elements("BrowseNode")
+nodes.each do |node|
+  puts node.get_unescaped('BrowseNodeId')
+  puts node.get_unescaped('Name')
+end
+
+# Similarity lookup
+Amazon::ECS.similarity_lookup("0974514055")
+
+# Other operation
+Amazon::Ecs.send_request(:operation => '[OperationName]', :id => 123)
 ```
 
 Or you could extend `Amazon::Ecs`:
 ```ruby
 module Amazon
   class Ecs
-    def self.similarity_lookup(item_id, opts={})
-      opts[:operation] = 'SimilarityLookup'
-      opts[:item_id] = item_id
-    
+    def self.custom_method(id, opts={})
+      opts[:operation] = '[OperationName]'
+      opts[:id] = id
+
       self.send_request(opts)
     end
   end
 end
 
-Amazon::Ecs.similarity_lookup('[item_id]', :param1 => 'abc', :param2 => 'xyz')
+Amazon::Ecs.custom_method(123, :param1 => 'abc', :param2 => 'xyz')
 ```
 
 Refer to [Amazon Product Advertising API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html) documentation for more information on the operations and request parameters supported.
