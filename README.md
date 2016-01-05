@@ -20,9 +20,7 @@ gem install amazon-ecs
 ```ruby
 require 'amazon/ecs'
 
-# Configure your access key, secret key and other options such as the associate tag.
-# Options set in the configure block will be merged with the pre-configured default
-# options, i.e.
+# default options:
 #  options[:version] => "2013-08-01"
 #  options[:service] => "AWSECommerceService"
 Amazon::Ecs.configure do |options|
@@ -31,14 +29,8 @@ Amazon::Ecs.configure do |options|
   options[:associate_tag] = '[your associate tag]'
 end
 
-# Or if you need to replace the default options, overwrite the options value, e.g.
-# Amazon::Ecs.options = {
-#  :version => "2013-08-01",
-#  :service => "AWSECommerceService"
-#  :associate_tag => '[your associate tag]',
-#  :AWS_access_key_id => '[your developer token]',
-#  :AWS_secret_key => '[your secret access key]'
-# }
+# to overwrite the whole options
+# Amazon::Ecs.options = { ... }
 
 # options passed with the method call will be merged with the default options
 res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
