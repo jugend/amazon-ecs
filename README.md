@@ -92,11 +92,9 @@ end
 ```ruby
 # Browse node lookup
 resp = Amazon::ECS.browse_node_lookup("17")
-
 nodes = resp.get_elements("BrowseNode")
 nodes.each do |node|
-  node.get_unescaped('BrowseNodeId')
-  node.get_unescaped('Name')
+  node.get('Name')
 end
 
 # Similarity lookup
