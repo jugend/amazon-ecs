@@ -32,13 +32,13 @@ end
 # to overwrite the whole options
 # Amazon::Ecs.options = { ... }
 
-# options passed with the method call will be merged with the default options
+# options will be merged with the default options
 res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
 
 # search amazon uk
 res = Amazon::Ecs.item_search('ruby', :country => 'uk')
 
-# search all items, default search index is Books
+# search all items, default search index: Books
 res = Amazon::Ecs.item_search('ruby', :search_index => 'All')
 
 res.is_valid_request?     # return true if request is valid
