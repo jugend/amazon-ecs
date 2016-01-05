@@ -15,7 +15,7 @@ the XML path needs to be updated.
 gem install amazon-ecs
 ```
 
-## How to use it
+## Usage
 
 ```ruby
 require 'amazon/ecs'
