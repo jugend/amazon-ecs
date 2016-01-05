@@ -41,12 +41,12 @@ res = Amazon::Ecs.item_search('ruby', :country => 'uk')
 # search all items, default search index: Books
 res = Amazon::Ecs.item_search('ruby', :search_index => 'All')
 
-res.is_valid_request?     # return true if request is valid
-res.has_error?            # return true if there is an error
-res.error                 # return error message if there is any
-res.total_pages           # return total pages
-res.total_results         # return total results
-res.item_page             # return current page no if :item_page option is provided
+res.is_valid_request?
+res.has_error?
+res.error                                 # error message
+res.total_pages
+res.total_results
+res.item_page                             # current page no if :item_page option is provided
 
 # find elements matching 'Item' in response object
 res.items.each do |item|
@@ -62,14 +62,14 @@ res.items.each do |item|
   item_attributes.get_array('Author')    # ['Author 1', 'Author 2', ...]
   item_attributes.get('Author')          # 'Author 1'
 
-  # return an hash of children text values with the element names as the keys
+  # return a hash object with the element names as the keys
   item.get_hash('SmallImage') # {:url => ..., :width => ..., :height => ...}
 
-  # return the first matching path as Amazon::Element
+  # return the first matching path
   item_height = item.get_element('ItemDimensions/Height')
 
-  # retrieve attributes from Amazon::Element
-  item_height.attributes['Units']   # 'hundredths-inches'
+  # return Unit attribute value
+  item_height.attributes['Units']        # 'hundredths-inches'
 
   # there are two ways to find elements:
   # 1) return an array of Amazon::Element
