@@ -97,7 +97,7 @@ res.items.each do |item|
 end
 ```
 
-Other Operations
+## Other Operations
 
 ```ruby
 # Browse node lookup
@@ -116,7 +116,7 @@ Amazon::ECS.similarity_lookup("0974514055")
 Amazon::Ecs.send_request(:operation => '[OperationName]', :id => 123)
 ```
 
-Or you could extend `Amazon::Ecs`:
+## Custom Method
 ```ruby
 module Amazon
   class Ecs
