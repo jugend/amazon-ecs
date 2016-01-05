@@ -49,7 +49,6 @@ res = Amazon::Ecs.item_search('ruby', :country => 'uk')
 # search all items, default search index is Books
 res = Amazon::Ecs.item_search('ruby', :search_index => 'All')
 
-# some common response object methods
 res.is_valid_request?     # return true if request is valid
 res.has_error?            # return true if there is an error
 res.error                 # return error message if there is any
@@ -57,7 +56,7 @@ res.total_pages           # return total pages
 res.total_results         # return total results
 res.item_page             # return current page no if :item_page option is provided
 
-# traverse through each item (Amazon::Element)
+# find elements matching 'Item' in response object
 res.items.each do |item|
   # retrieve string value using XML path
   item.get('ASIN')
@@ -80,22 +79,17 @@ res.items.each do |item|
   # retrieve attributes from Amazon::Element
   item_height.attributes['Units']   # 'hundredths-inches'
 
-  # return an array of Amazon::Element
-  authors = item.get_elements('Author')
-
-  # return Nokogiri::XML::NodeSet object or nil if not found
-  reviews = item/'EditorialReview'
-
-  # traverse through Nokogiri elements
+  # there are two ways to find elements:
+  # 1) return an array of Amazon::Element
+  reviews = item.get_elements('EditorialReview')
   reviews.each do |review|
-    # Getting hash value out of Nokogiri element
-    Amazon::Element.get_hash(review) # [:source => ..., :content ==> ...]
+    el.get_unescaped('Source')
+    el.get_unescaped('Content')
+  end
 
-    # Or to get unescaped HTML values
-    Amazon::Element.get_unescaped(review, 'Source')
-    Amazon::Element.get_unescaped(review, 'Content')
-
-    # Or this way
+  # 2) return Nokogiri::XML::NodeSet object or nil if not found
+  reviews = item/'EditorialReview'
+  reviews.each do |review|
     el = Amazon::Element.new(review)
     el.get_unescaped('Source')
     el.get_unescaped('Content')
