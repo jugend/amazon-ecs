@@ -114,23 +114,8 @@ Amazon::ECS.similarity_lookup("0974514055")
 Amazon::Ecs.send_request(:operation => '[OperationName]', :id => 123)
 ```
 
-## Custom Method
-```ruby
-module Amazon
-  class Ecs
-    def self.custom_method(id, opts={})
-      opts[:operation] = '[OperationName]'
-      opts[:id] = id
-
-      self.send_request(opts)
-    end
-  end
-end
-
-Amazon::Ecs.custom_method(123, :param1 => 'abc', :param2 => 'xyz')
-```
-
-Refer to [Amazon Product Advertising API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html) documentation for more information on the operations and request parameters supported.
+Refer to [Amazon Product Advertising API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html)
+documentation for more information on the operations and request parameters supported.
 
 ## License
 
