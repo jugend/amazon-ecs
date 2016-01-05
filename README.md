@@ -103,8 +103,8 @@ resp = Amazon::ECS.browse_node_lookup("17")
 
 nodes = resp.get_elements("BrowseNode")
 nodes.each do |node|
-  puts node.get_unescaped('BrowseNodeId')
-  puts node.get_unescaped('Name')
+  node.get_unescaped('BrowseNodeId')
+  node.get_unescaped('Name')
 end
 
 # Similarity lookup
