@@ -67,8 +67,6 @@ res.items.each do |item|
 
   # return the first matching path
   item_height = item.get_element('ItemDimensions/Height')
-
-  # return Unit attribute value
   item_height.attributes['Units']        # 'hundredths-inches'
 
   # there are two ways to find elements:
