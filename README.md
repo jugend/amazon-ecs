@@ -5,8 +5,8 @@
 The library wraps around Nokogiri element object. It provides an easy access to the XML response
 through XML paths instead of object attributes. 
 
-The gist is - as the API evolves, there will be changes to the XML schema. With `amazon-ecs`, only
-the XML path needs to be updated.
+The gist is, if the API and the response schema are updated, `amazon-ecs` library will still work,
+and you only need to update the xml paths.
 
 ## Installation
 
