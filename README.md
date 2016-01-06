@@ -106,8 +106,8 @@ documentation for more information on the operations and request parameters supp
 ## Dump and Load
 
 ```ruby
-  resp.marshal_dump         # xml string
-  resp.marshal_load(xml)  
+resp.marshal_dump         # xml string
+resp.marshal_load(xml)  
 ```
 ## License
 
