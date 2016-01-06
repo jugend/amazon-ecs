@@ -2,8 +2,7 @@
 
 `amazon-ecs` is a generic Ruby wrapper to access Amazon Product Advertising API.
 
-The library wraps around Nokogiri element object. It provides an easy access to the XML response
-through XML paths instead of object attributes. 
+The library wraps around Nokogiri element object. It provides an easy access to the XML response elements and attributes.
 
 The gist is, if the API and the response schema are updated, `amazon-ecs` library will still work,
 and you only need to update the xml paths.
