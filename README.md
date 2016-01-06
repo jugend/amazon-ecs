@@ -103,6 +103,12 @@ Amazon::Ecs.send_request(:operation => '[OperationName]', :id => 123)
 Refer to [Amazon Product Advertising API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html)
 documentation for more information on the operations and request parameters supported.
 
+## Dump and Load
+
+```ruby
+  resp.marshal_dump         # xml string
+  resp.marshal_load(xml)  
+```
 ## License
 
 [The MIT License]
