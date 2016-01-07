@@ -87,8 +87,8 @@ end
 
 ```ruby
 # Browse node lookup
-resp = Amazon::ECS.browse_node_lookup("17")
-nodes = resp.get_elements("BrowseNode")
+res = Amazon::ECS.browse_node_lookup("17")
+nodes = res.get_elements("BrowseNode")
 nodes.each do |node|
   node.get('Name')
 end
@@ -106,8 +106,8 @@ documentation for more information on the operations and request parameters supp
 ## Dump and Load
 
 ```ruby
-resp.marshal_dump         # xml string
-resp.marshal_load(xml)  
+res.marshal_dump         # xml string
+res.marshal_load(xml)  
 ```
 ## License
 
