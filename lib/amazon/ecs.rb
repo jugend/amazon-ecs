@@ -30,9 +30,12 @@ require 'openssl'
 
 module Amazon
   class RequestError < StandardError; end
+  class RequestTemporaryError < StandardError; end
 
   class Ecs
     VERSION = '2.4.0'
+
+    MAX_RETRY_COUNT = 3
 
     SERVICE_URLS = {
         :us => 'http://webservices.amazon.com/onca/xml',
@@ -136,10 +139,27 @@ module Amazon
       request_url = prepare_url(opts)
       log "Request URL: #{request_url}"
 
-      res = Net::HTTP.get_response(URI::parse(request_url))
-      unless res.kind_of? Net::HTTPSuccess
-        raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
+      retry_count = 0
+      begin
+        res = Net::HTTP.get_response(URI::parse(request_url))
+        retry_count += 1
+
+        if res.kind_of? Net::HTTPServiceUnavailable
+          raise Amazon::RequestTemporaryError, "HTTP Response: #{res.code} #{res.message}"
+        elsif !res.kind_of? Net::HTTPSuccess
+          raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
+        end
+
+      # Retry when the 503 Service Unavailable
+      rescue Amazon::RequestTemporaryError => error
+        if retry_count <= MAX_RETRY_COUNT
+          sleep retry_count
+          retry
+        else
+          raise Amazon::RequestError, error
+        end
       end
+
       Response.new(res.body)
     end
 
