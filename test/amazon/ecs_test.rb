@@ -10,15 +10,22 @@ class Amazon::EcsTest < Test::Unit::TestCase
   AWS_ACCESS_KEY_ID = ENV['AWS_ACCESS_KEY_ID'] || ''
   AWS_SECRET_KEY = ENV['AWS_SECRET_KEY'] || ''
 
+  puts AWS_ACCESS_KEY_ID
+
   raise "AWS_ACCESS_KEY_ID env variable is not set" if AWS_ACCESS_KEY_ID.empty?
   raise "AWS_SECRET_KEY env variable is not set" if AWS_SECRET_KEY.empty?
 
   Amazon::Ecs.configure do |options|
     options[:AWS_access_key_id] = AWS_ACCESS_KEY_ID
     options[:AWS_secret_key] = AWS_SECRET_KEY
-    options[:associate_tag] = 'bookjetty-20'
+    # options[:associate_tag] = 'bookjetty-20'
+    options[:associate_tag] = 'schenecalcul-20'
   end
 
+  def setup
+    # pause half a second between each test to prevent aws throtteling 503 response error
+    sleep 0.5
+  end
   # To print debug information
   # Amazon::Ecs.debug = true
 
