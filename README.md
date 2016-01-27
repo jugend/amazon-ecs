@@ -27,10 +27,11 @@ Amazon::Ecs.configure do |options|
   options[:associate_tag] = '[your associate tag]'
 end
 
-# If you intend to query more than one local you need to have an associate tag for each to receive credit
-see [Amazon Product Advertising API - Associate IDs](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/AssociateIDs.html)
+# If you intend to query more than one local you need to sign up 
+# and have an associate tag for each to receive credit.
 
-# To set up differrent Associate IDs for each local, pass a hash to the options [:associate_tag] in configure for each country local you intend to query
+# To set up differrent Associate IDs for each local:
+# pass a hash to the options [:associate_tag] for each country local you intend to query
 Amazon::Ecs.configure do |options|
   options[:AWS_access_key_id] = '[your access key]'
   options[:AWS_secret_key] = '[you secret key]'
