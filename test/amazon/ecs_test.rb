@@ -215,12 +215,31 @@ class Amazon::EcsTest < Test::Unit::TestCase
   end
 
   def test_other_service_urls
+    ass_options =  {
+        :us => 'us_tag',
+        :uk => 'uk_tag',
+        :ca => 'ca_tag',
+        :de => 'de_tag',
+        :jp => 'jp_tag',
+        :fr => 'fr_tag',
+        :it => 'it_tag',
+        :cn => 'cn_tag',
+        :es => 'es_tag',
+        :in => 'in_tag',
+        :br => 'br_tag',
+        :mx => 'mx_tag',
+    }
+    Amazon::Ecs.configure do |options|
+      options[:associate_tag] = ass_options
+    end
     Amazon::Ecs::SERVICE_URLS.each do |key, value|
       next if key == :us
-
       begin
+        sleep 1
         resp = Amazon::Ecs.item_search('ruby', :country => key)
         assert resp, "#{key} service url (#{value}) is invalid"
+        assert resp.get_element('OperationRequest').get_element('Arguments').to_s.include?('Value="' + ass_options[key] + '"'),
+               "Associate key is incorrect for #{key}"
       rescue => e
         assert false, "'#{key}' service url (#{value}) is invalid. Error: #{e}"
         puts e.backtrace

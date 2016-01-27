@@ -84,6 +84,17 @@ module Amazon
     def self.configure(&proc)
       raise ArgumentError, "Block is required." unless block_given?
       yield @@options
+      return unless @@options[:associate_tag] 
+      if @@options[:associate_tag].is_a?(Hash)
+         @associate_tag = @@options[:associate_tag]
+      else
+        ass_tag = {}
+        SERVICE_URLS.each do |key, _value|
+          ass_tag[key] = @@options[:associate_tag]
+        end
+        @associate_tag = ass_tag
+      end
+      @@options.delete(:associate_tag)
     end
 
     # Search amazon items with search terms. Default search index option is 'Books'.
@@ -253,6 +264,8 @@ module Amazon
       def self.prepare_url(opts)
         country = opts.delete(:country)
         country = (country.nil?) ? 'us' : country
+        opts[:associate_tag] = @associate_tag[country.to_sym] unless opts[:associate_tag]
+
         request_url = SERVICE_URLS[country.to_sym]
         raise Amazon::RequestError, "Invalid country '#{country}'" unless request_url
 
