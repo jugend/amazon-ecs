@@ -87,11 +87,11 @@ end
 
 ```ruby
 # Item lookup
-res = Amazon::ECS.item_lookup("0974514055")
+res = Amazon::Ecs.item_lookup("0974514055")
 item = resp.get_element("Item")
 
 # Browse node lookup
-res = Amazon::ECS.browse_node_lookup("17")
+res = Amazon::Ecs.browse_node_lookup("17")
 nodes = res.get_elements("BrowseNode")
 nodes.each do |node|
   node.get('Name')
