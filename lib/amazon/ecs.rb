@@ -352,7 +352,6 @@ module Amazon
           else
             hash = {}
             result.children.each do |child|
-              # binding.pry
               hash[child.name] = self.get_hash(element, child.path)
             end
             hash
