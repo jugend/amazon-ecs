@@ -347,12 +347,16 @@ module Amazon
 
         result = element.at_xpath(path)
         if result
-          hash = {}
-          result = result.children
-          result.each do |item|
-            hash[item.name] = item.inner_html
+          if result.children.size == 1 && result.children.first.name == "text"
+            result.children.first.inner_text
+          else
+            hash = {}
+            result.children.each do |child|
+              # binding.pry
+              hash[child.name] = self.get_hash(element, child.path)
+            end
+            hash
           end
-          hash
         end
       end
     end
