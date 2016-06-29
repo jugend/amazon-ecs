@@ -66,8 +66,8 @@ class Amazon::EcsTest < Test::Unit::TestCase
     assert resp.is_valid_request?,
       "Not a valid request"
     item = resp.first_item
-    assert_no_match /\A&#x.*/, item.get_unescaped("//FormattedPrice"),
-      "£ sign converted to ASCII from UTF-8"
+    assert_no_match(/\A&#x.*/, item.get_unescaped("//FormattedPrice"),
+      "£ sign converted to ASCII from UTF-8")
   end
 
   def test_item_search_by_author
@@ -133,8 +133,8 @@ class Amazon::EcsTest < Test::Unit::TestCase
     resp = Amazon::Ecs.item_lookup('abc')
     assert resp.is_valid_request?,
       "Not a valid request"
-    assert_match /ABC is not a valid value for ItemId/, resp.error,
-      "Error Message for lookup of ASIN = ABC different from expected"
+    assert_match(/ABC is not a valid value for ItemId/, resp.error,
+      "Error Message for lookup of ASIN = ABC different from expected")
   end
 
   def test_get_elements
