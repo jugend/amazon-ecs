@@ -137,10 +137,11 @@ module Amazon
       log "Request URL: #{request_url}"
 
       res = Net::HTTP.get_response(URI::parse(request_url))
+      body = Response.new(res.body)
       unless res.kind_of? Net::HTTPSuccess
-        raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
+        raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}#{ body.error}"
       end
-      Response.new(res.body)
+      body
     end
 
     def self.validate_request(opts)
