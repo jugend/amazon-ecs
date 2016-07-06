@@ -59,7 +59,7 @@ module Amazon
       :service => "AWSECommerceService"
     }
 
-    @@debug = false
+    @@debug = ENV['DEBUG_AMAZON_ECS'] || false
 
     # Default search options
     def self.options
