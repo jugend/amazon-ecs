@@ -32,7 +32,7 @@ module Amazon
   class RequestError < StandardError; end
 
   class Ecs
-    VERSION = '2.4.0'
+    VERSION = '2.5.0'
 
     SERVICE_URLS = {
         :us => 'http://webservices.amazon.com/onca/xml',
@@ -134,9 +134,11 @@ module Amazon
       opts[:timestamp] = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
 
       request_url = prepare_url(opts)
-      log "Request URL: #{request_url}"
+      log("Request URL: #{request_url}")
 
       res = Net::HTTP.get_response(URI::parse(request_url))
+      log("Response:\n#{res.body}\n\n")
+
       ecs_res = Response.new(res.body)
       unless res.kind_of? Net::HTTPSuccess
         err_msg = "HTTP Response: #{res.code} #{res.message}"
@@ -273,7 +275,7 @@ module Amazon
         end
 
         opts.each do |e|
-          log "Adding #{e[0]}=#{e[1]}"
+          log("Adding #{e[0]}=#{e[1]}")
           next unless e[1]
           e[1] = e[1].join(',') if e[1].is_a? Array
           # v = URI.encode(e[1].to_s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))

@@ -1,3 +1,8 @@
+2.5.0 2016-07-09
+----------------
+* Turn on debug mode with DEBUG_AMAZON_ECS=1
+* Add Amazon response error message as part of the error object thrown
+
 2.4.0 2016-01-05
 ----------------
 * Upgrade API version to 2013-08-01

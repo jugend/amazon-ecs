@@ -111,8 +111,22 @@ documentation for more information on the operations and request parameters supp
 
 ```ruby
 res.marshal_dump         # xml string
-res.marshal_load(xml)  
+res.marshal_load(xml)
 ```
+
+## Debug
+
+Turn on the debug mode to display API request params, full URL and XML response:
+
+```ruby
+Amazon::Ecs::debug = true
+```
+Or you could also set the `DEBUG_AMAZON_ECS` environment variable to 1.
+
+```sh
+DEBUG_AMAZON_ECS=1 [command]
+```
+
 ## License
 
 [The MIT License]
