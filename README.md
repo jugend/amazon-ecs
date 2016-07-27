@@ -88,7 +88,7 @@ end
 ```ruby
 # Item lookup
 res = Amazon::Ecs.item_lookup("0974514055")
-item = resp.get_element("Item")
+item = res.get_element("Item")
 
 # Browse node lookup
 res = Amazon::Ecs.browse_node_lookup("17")
