@@ -27,6 +27,31 @@ Amazon::Ecs.configure do |options|
   options[:associate_tag] = '[your associate tag]'
 end
 
+# If you intend to query more than one local you need to sign up 
+# and have an associate tag for each to receive credit.
+
+# To set up differrent Associate IDs for each local:
+# pass a hash to the options [:associate_tag] for each country local you intend to query
+Amazon::Ecs.configure do |options|
+  options[:AWS_access_key_id] = '[your access key]'
+  options[:AWS_secret_key] = '[you secret key]'
+  options[:associate_tag] = {
+      :us => '[your associate tag]',
+      :uk => '[your associate tag]',
+      :ca => '[your associate tag]',
+      :de => '[your associate tag]',
+      :jp => '[your associate tag]',
+      :fr => '[your associate tag]',
+      :it => '[your associate tag]',
+      :cn => '[your associate tag]',
+      :es => '[your associate tag]',
+      :in => '[your associate tag]',
+      :br => '[your associate tag]',
+      :mx => '[your associate tag]'
+    }
+end
+
+
 # to overwrite the whole options
 # Amazon::Ecs.options = { ... }
 

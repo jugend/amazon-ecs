@@ -10,6 +10,8 @@ class Amazon::EcsTest < Test::Unit::TestCase
   AWS_ACCESS_KEY_ID = ENV['AWS_ACCESS_KEY_ID'] || ''
   AWS_SECRET_KEY = ENV['AWS_SECRET_KEY'] || ''
 
+  puts AWS_ACCESS_KEY_ID
+
   raise "AWS_ACCESS_KEY_ID env variable is not set" if AWS_ACCESS_KEY_ID.empty?
   raise "AWS_SECRET_KEY env variable is not set" if AWS_SECRET_KEY.empty?
 
@@ -19,6 +21,10 @@ class Amazon::EcsTest < Test::Unit::TestCase
     options[:associate_tag] = 'bookjetty-20'
   end
 
+  def setup
+    # pause half a second between each test to prevent aws throtteling 503 response error
+    sleep 0.5
+  end
   # To print debug information
   # Amazon::Ecs.debug = true
 
@@ -208,12 +214,31 @@ class Amazon::EcsTest < Test::Unit::TestCase
   end
 
   def test_other_service_urls
+    ass_options =  {
+        :us => 'us_tag',
+        :uk => 'uk_tag',
+        :ca => 'ca_tag',
+        :de => 'de_tag',
+        :jp => 'jp_tag',
+        :fr => 'fr_tag',
+        :it => 'it_tag',
+        :cn => 'cn_tag',
+        :es => 'es_tag',
+        :in => 'in_tag',
+        :br => 'br_tag',
+        :mx => 'mx_tag',
+    }
+    Amazon::Ecs.configure do |options|
+      options[:associate_tag] = ass_options
+    end
     Amazon::Ecs::SERVICE_URLS.each do |key, value|
       next if key == :us
-
       begin
+        sleep 1
         resp = Amazon::Ecs.item_search('ruby', :country => key)
         assert resp, "#{key} service url (#{value}) is invalid"
+        assert resp.get_element('OperationRequest').get_element('Arguments').to_s.include?('Value="' + ass_options[key] + '"'),
+               "Associate key is incorrect for #{key}"
       rescue => e
         assert false, "'#{key}' service url (#{value}) is invalid. Error: #{e}"
         puts e.backtrace
