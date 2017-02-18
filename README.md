@@ -18,7 +18,7 @@ gem install amazon-ecs
 ```ruby
 require 'amazon/ecs'
 
-# default options:
+# Default options:
 #  options[:version] => "2013-08-01"
 #  options[:service] => "AWSECommerceService"
 Amazon::Ecs.configure do |options|
@@ -27,16 +27,16 @@ Amazon::Ecs.configure do |options|
   options[:associate_tag] = '[your associate tag]'
 end
 
-# to overwrite the whole options
+# To replace default options
 # Amazon::Ecs.options = { ... }
 
-# options will be merged with the default options
+# To override default options
 res = Amazon::Ecs.item_search('ruby', {:response_group => 'Medium', :sort => 'salesrank'})
 
-# search amazon uk
+# Search Amazon UK
 res = Amazon::Ecs.item_search('ruby', :country => 'uk')
 
-# search all items, default search index: Books
+# Search all items, default search index: Books
 res = Amazon::Ecs.item_search('ruby', :search_index => 'All')
 
 res.is_valid_request?
@@ -46,13 +46,13 @@ res.total_pages
 res.total_results
 res.item_page                             # current page no if :item_page option is provided
 
-# find elements matching 'Item' in response object
+# Find elements matching 'Item' in response object
 res.items.each do |item|
-  # retrieve string value using XML path
+  # Retrieve string value using XML path
   item.get('ASIN')
   item.get('ItemAttributes/Title')
 
-  # return Amazon::Element instance
+  # Return Amazon::Element instance
   item_attributes = item.get_element('ItemAttributes')
   item_attributes.get('Title')
 
@@ -60,14 +60,14 @@ res.items.each do |item|
   item_attributes.get_array('Author')    # ['Author 1', 'Author 2', ...]
   item_attributes.get('Author')          # 'Author 1'
 
-  # return a hash object with the element names as the keys
+  # Return a hash object with the element names as the keys
   item.get_hash('SmallImage') # {:url => ..., :width => ..., :height => ...}
 
-  # return the first matching path
+  # Return the first matching path
   item_height = item.get_element('ItemDimensions/Height')
   item_height.attributes['Units']        # 'hundredths-inches'
 
-  # there are two ways to find elements:
+  # There are two ways to find elements:
   # 1) return an array of Amazon::Element
   reviews = item.get_elements('EditorialReview')
   reviews.each do |review|
