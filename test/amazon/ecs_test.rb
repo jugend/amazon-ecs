@@ -20,10 +20,10 @@ class Amazon::EcsTest < Test::Unit::TestCase
   end
 
   # Amazon throwing an error if requests are submitted too quickly
-  AMAZON_ECS_REQUEST_DELAY = ENV['AMAZON_ECS_REQUEST_DELAY'] || 1
+  AMAZON_ECS_REQUEST_DELAY = ENV['AMAZON_ECS_REQUEST_DELAY'] || 0
 
-  def throttle_request
-      sleep AMAZON_ECS_REQUEST_DELAY.to_i
+  def throttle_request(delay = AMAZON_ECS_REQUEST_DELAY.to_i)
+      sleep(delay) if delay > 0
   end
 
   # To print debug information
@@ -206,8 +206,11 @@ class Amazon::EcsTest < Test::Unit::TestCase
         resp = Amazon::Ecs.item_search('ruby', :country => key)
         assert resp, "#{key} service url (#{value}) is invalid"
       rescue => e
-        assert false, "'#{key}' service url (#{value}) is invalid. Error: #{e}"
-        puts e.backtrace
+        if e.message.match(/503 Service Unavailable/)
+            puts "Unable to test '#{key}' service url (#{value}) is unavailable: #{e}"
+        else
+            assert false, "'#{key}' service url (#{value}) is invalid. Error: #{e}"
+        end
       end
     end
   end
