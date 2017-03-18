@@ -1,5 +1,7 @@
 # amazon-ecs
 
+[![Travis CI](https://travis-ci.org/jugend/amazon-ecs.svg?branch=master)](https://travis-ci.org/jugend/amazon-ecs)
+
 `amazon-ecs` is a generic Ruby wrapper to access Amazon Product Advertising API.
 
 The library wraps around [Nokogiri](http://www.nokogiri.org/) element object. It provides an easy access to the XML response elements and attributes.
