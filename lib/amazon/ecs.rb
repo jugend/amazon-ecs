@@ -61,6 +61,9 @@ module Amazon
 
     @@debug = ENV['DEBUG_AMAZON_ECS'] || false
 
+    # Error response from Amazon API may contain Access key ID
+    @@hideAPIError = ENV['HIDE_AMAZON_ECS_API_ERROR'] || false
+
     # Default search options
     def self.options
       @@options
@@ -142,7 +145,7 @@ module Amazon
       ecs_res = Response.new(res.body)
       unless res.kind_of? Net::HTTPSuccess
         err_msg = "HTTP Response: #{res.code} #{res.message}"
-        err_msg += " - #{ecs_res.error}" if ecs_res.error
+        err_msg += " - #{ecs_res.error}" if ecs_res.error && !@@hideAPIError
         raise Amazon::RequestError, err_msg
       end
       ecs_res

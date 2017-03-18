@@ -9,6 +9,7 @@ class Amazon::EcsTest < Test::Unit::TestCase
 
   AWS_ACCESS_KEY_ID = ENV['AWS_ACCESS_KEY_ID'] || ''
   AWS_SECRET_KEY = ENV['AWS_SECRET_KEY'] || ''
+  AWS_SECRET_KEY = ENV['AWS_SECRET_KEY'] || ''
 
   raise "AWS_ACCESS_KEY_ID env variable is not set" if AWS_ACCESS_KEY_ID.empty?
   raise "AWS_SECRET_KEY env variable is not set" if AWS_SECRET_KEY.empty?
@@ -218,6 +219,8 @@ class Amazon::EcsTest < Test::Unit::TestCase
         assert false, "'#{key}' service url (#{value}) is invalid. Error: #{e}"
         puts e.backtrace
       end
+
+      sleep 1.5
     end
   end
 end
