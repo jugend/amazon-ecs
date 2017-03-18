@@ -9,7 +9,6 @@ class Amazon::EcsTest < Test::Unit::TestCase
 
   AWS_ACCESS_KEY_ID = ENV['AWS_ACCESS_KEY_ID'] || ''
   AWS_SECRET_KEY = ENV['AWS_SECRET_KEY'] || ''
-  AWS_SECRET_KEY = ENV['AWS_SECRET_KEY'] || ''
 
   raise "AWS_ACCESS_KEY_ID env variable is not set" if AWS_ACCESS_KEY_ID.empty?
   raise "AWS_SECRET_KEY env variable is not set" if AWS_SECRET_KEY.empty?
@@ -20,52 +19,54 @@ class Amazon::EcsTest < Test::Unit::TestCase
     options[:associate_tag] = 'bookjetty-20'
   end
 
+  # Amazon throwing an error if requests are submitted too quickly
+  AMAZON_ECS_REQUEST_DELAY = ENV['AMAZON_ECS_REQUEST_DELAY'] || 1
+
+  def throttle_request
+      sleep AMAZON_ECS_REQUEST_DELAY.to_i
+  end
+
   # To print debug information
   # Amazon::Ecs.debug = true
+
+  def setup
+    throttle_request
+  end
 
   # Test item_search
   def test_item_search
     resp = Amazon::Ecs.item_search('ruby')
-    assert resp.is_valid_request?,
-      "Not a valid request"
-    assert (resp.total_results >= 3600),
-      "Results returned (#{resp.total_results}) were < 3600"
-    assert (resp.total_pages >= 360),
-      "Pages returned (#{resp.total_pages}) were < 360"
+    assert resp.is_valid_request?, "Not a valid request"
+    assert (resp.total_results >= 3600), "Results returned (#{resp.total_results}) were < 3600"
+    assert (resp.total_pages >= 360), "Pages returned (#{resp.total_pages}) were < 360"
   end
 
   def test_item_search_with_special_characters
     resp = Amazon::Ecs.item_search('()*&^%$')
-    assert resp.is_valid_request?,
-      "Not a valid request"
+    assert resp.is_valid_request?, "Not a valid request"
   end
 
   def test_item_search_with_paging
     resp = Amazon::Ecs.item_search('ruby', :item_page => 2)
-    assert resp.is_valid_request?,
-      "Not a valid request"
-    assert_equal 2, resp.item_page,
-      "Page returned (#{resp.item_page}) different from expected (2)"
+    assert resp.is_valid_request?, "Not a valid request"
+    assert_equal 2, resp.item_page, "Page returned (#{resp.item_page}) different from expected (2)"
   end
 
   def test_item_search_with_invalid_request
     resp = Amazon::Ecs.item_search(nil)
-    assert !resp.is_valid_request?,
-      "Expected invalid request error"
+    assert !resp.is_valid_request?, "Expected invalid request error"
   end
 
   def test_item_search_with_no_result
     resp = Amazon::Ecs.item_search('afdsafds')
-    assert resp.is_valid_request?,
-      "Not a valid request"
+    assert resp.is_valid_request?, "Not a valid request"
     assert_equal "We did not find any matches for your request.", resp.error,
       "Error string different from expected"
   end
 
   def test_utf8_encoding
     resp = Amazon::Ecs.item_search('ruby', :country => :uk)
-    assert resp.is_valid_request?,
-      "Not a valid request"
+    assert resp.is_valid_request?, "Not a valid request"
     item = resp.first_item
     assert_no_match(/\A&#x.*/, item.get_unescaped("//FormattedPrice"),
       "£ sign converted to ASCII from UTF-8")
@@ -73,8 +74,7 @@ class Amazon::EcsTest < Test::Unit::TestCase
 
   def test_item_search_by_author
     resp = Amazon::Ecs.item_search('dave', :type => :author)
-    assert resp.is_valid_request?,
-      "Not a valid request"
+    assert resp.is_valid_request?, "Not a valid request"
   end
 
   def test_item_get
@@ -83,13 +83,11 @@ class Amazon::EcsTest < Test::Unit::TestCase
 
     # test get
     assert_equal "Programming Ruby: The Pragmatic Programmers' Guide, Second Edition",
-      item.get("ItemAttributes/Title"),
-      "Title different from expected"
+      item.get("ItemAttributes/Title"), "Title different from expected"
 
     # test get_array
     assert_equal ['Dave Thomas', 'Chad Fowler', 'Andy Hunt'],
-      item.get_array("Author"),
-      "Authors Array different from expected"
+      item.get_array("Author"), "Authors Array different from expected"
 
     # test get_hash
     small_image = item.get_hash("SmallImage")
@@ -118,22 +116,18 @@ class Amazon::EcsTest < Test::Unit::TestCase
   def test_item_lookup
     resp = Amazon::Ecs.item_lookup('0974514055')
     assert_equal "Programming Ruby: The Pragmatic Programmers' Guide, Second Edition",
-      resp.first_item.get("ItemAttributes/Title"),
-      "Title different from expected"
+      resp.first_item.get("ItemAttributes/Title"), "Title different from expected"
   end
 
   def test_item_lookup_with_invalid_request
     resp = Amazon::Ecs.item_lookup(nil)
-    assert resp.has_error?,
-      "Response should have been invalid"
-    assert resp.error,
-      "Response should have contained an error"
+    assert resp.has_error?, "Response should have been invalid"
+    assert resp.error, "Response should have contained an error"
   end
 
   def test_item_lookup_with_no_result
     resp = Amazon::Ecs.item_lookup('abc')
-    assert resp.is_valid_request?,
-      "Not a valid request"
+    assert resp.is_valid_request?, "Not a valid request"
     assert_match(/ABC is not a valid value for ItemId/, resp.error,
       "Error Message for lookup of ASIN = ABC different from expected")
   end
@@ -143,20 +137,16 @@ class Amazon::EcsTest < Test::Unit::TestCase
     item = resp.first_item
 
     authors = item.get_elements("Author")
-    assert_instance_of Array, authors,
-      "Authors should be an Array"
-    assert_equal 3, authors.size,
-      "Author array size (#{authors.size}) different from expected (3)"
+    assert_instance_of Array, authors, "Authors should be an Array"
+    assert_equal 3, authors.size, "Author array size (#{authors.size}) different from expected (3)"
     assert_instance_of Amazon::Element, authors.first,
       "Authors array first element (#{authors.first.class}) should be an Amazon::Element"
     assert_equal "Dave Thomas", authors.first.get,
       "First Author (#{authors.first.get}) different from expected (Dave Thomas)"
 
     asin = item.get_elements("./ASIN")
-    assert_instance_of Array, asin,
-      "ASIN should be an Array"
-    assert_equal 1, asin.size,
-      "ASIN array size (#{asin.size}) different from expected (1)"
+    assert_instance_of Array, asin, "ASIN should be an Array"
+    assert_equal 1, asin.size, "ASIN array size (#{asin.size}) different from expected (1)"
   end
 
   def test_get_element_and_attributes
@@ -177,8 +167,7 @@ class Amazon::EcsTest < Test::Unit::TestCase
 
   def test_multibyte_search
     resp = Amazon::Ecs.item_search("パソコン")
-    assert resp.is_valid_request?,
-      "Not a valid request"
+    assert resp.is_valid_request?, "Not a valid request"
   end
 
   def test_marshal_dump_and_load
@@ -213,14 +202,13 @@ class Amazon::EcsTest < Test::Unit::TestCase
       next if key == :us
 
       begin
+        throttle_request
         resp = Amazon::Ecs.item_search('ruby', :country => key)
         assert resp, "#{key} service url (#{value}) is invalid"
       rescue => e
         assert false, "'#{key}' service url (#{value}) is invalid. Error: #{e}"
         puts e.backtrace
       end
-
-      sleep 1.5
     end
   end
 end
