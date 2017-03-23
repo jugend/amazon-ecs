@@ -71,7 +71,7 @@ module Amazon
 
     # Set default search options
     def self.options=(opts)
-      @@options = opts
+      @@options.merge!(opts)
     end
 
     # Get debug flag.
