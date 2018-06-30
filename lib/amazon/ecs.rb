@@ -46,7 +46,8 @@ module Amazon
         :es => 'http://webservices.amazon.es/onca/xml',
         :in => 'http://webservices.amazon.in/onca/xml',
         :br => 'http://webservices.amazon.com.br/onca/xml',
-        :mx => 'http://webservices.amazon.com.mx/onca/xml'
+        :mx => 'http://webservices.amazon.com.mx/onca/xml',
+        :au => 'http://webservices.amazon.com.au/onca/xml'
     }
 
     OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||
