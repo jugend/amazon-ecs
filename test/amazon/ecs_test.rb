@@ -182,11 +182,11 @@ class Amazon::EcsTest < Test::Unit::TestCase
   end
 
   def test_browse_node_lookup
-    resp = Amazon::Ecs.browse_node_lookup("17")
+    resp = Amazon::Ecs.browse_node_lookup('17')
     assert resp.is_valid_request?, "Not a valid request"
 
     items = resp.get_elements("BrowseNode")
-    assert_equal 24, items.size
+    assert_equal 23, items.size
   end
 
   def test_similarity_lookup
@@ -194,12 +194,14 @@ class Amazon::EcsTest < Test::Unit::TestCase
     assert resp.is_valid_request?, "Not a valid request"
 
     items = resp.get_elements("Item")
-    assert_equal 10, items.size
+    assert_equal 7, items.size
   end
 
   def test_other_service_urls
+    test_regions = ENV['AWS_REGIONS'].split.collect(&:to_sym) || Amazon::Ecs::SERVICE_URLS.keys
+
     Amazon::Ecs::SERVICE_URLS.each do |key, value|
-      next if key == :us
+      next unless test_regions.include?(key)
 
       begin
         throttle_request
