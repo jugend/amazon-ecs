@@ -32,7 +32,7 @@ module Amazon
   class RequestError < StandardError; end
 
   class Ecs
-    VERSION = '2.5.1'
+    VERSION = '2.6.0'
 
     SERVICE_URLS = {
         :us => 'http://webservices.amazon.com/onca/xml',
@@ -49,11 +49,6 @@ module Amazon
         :mx => 'http://webservices.amazon.com.mx/onca/xml',
         :au => 'http://webservices.amazon.com.au/onca/xml'
     }
-
-    OPENSSL_DIGEST_SUPPORT = OpenSSL::Digest.constants.include?( 'SHA256' ) ||
-                             OpenSSL::Digest.constants.include?( :SHA256 )
-
-    OPENSSL_DIGEST = OpenSSL::Digest.new( 'sha256' ) if OPENSSL_DIGEST_SUPPORT
 
     @@options = {
       :version => "2013-08-01",
@@ -309,15 +304,7 @@ module Amazon
 
       def self.sign_request(url, key)
         return nil if key.nil?
-
-        if OPENSSL_DIGEST_SUPPORT
-          signature = OpenSSL::HMAC.digest(OPENSSL_DIGEST, key, url)
-          signature = [signature].pack('m').chomp
-        else
-          signature = Base64.encode64(HMAC::SHA256.digest(key, url)).strip
-        end
-        signature = CGI.escape(signature)
-        return signature
+        return CGI.escape(Base64.strict_encode64(OpenSSL::HMAC.digest("SHA256", key, url)))
       end
   end
 
