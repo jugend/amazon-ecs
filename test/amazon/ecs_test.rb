@@ -198,7 +198,7 @@ class Amazon::EcsTest < Test::Unit::TestCase
   end
 
   def test_other_service_urls
-    test_regions = ENV['AWS_REGIONS'].split.collect(&:to_sym) || Amazon::Ecs::SERVICE_URLS.keys
+    test_regions = ENV['AWS_REGIONS']&.split&.collect(&:to_sym) || Amazon::Ecs::SERVICE_URLS.keys
 
     Amazon::Ecs::SERVICE_URLS.each do |key, value|
       next unless test_regions.include?(key)
