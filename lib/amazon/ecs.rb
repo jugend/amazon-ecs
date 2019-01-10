@@ -309,15 +309,7 @@ module Amazon
 
       def self.sign_request(url, key)
         return nil if key.nil?
-
-        if OPENSSL_DIGEST_SUPPORT
-          signature = OpenSSL::HMAC.digest(OPENSSL_DIGEST, key, url)
-          signature = [signature].pack('m').chomp
-        else
-          signature = Base64.encode64(HMAC::SHA256.digest(key, url)).strip
-        end
-        signature = CGI.escape(signature)
-        return signature
+        return CGI.escape(Base64.strict_encode64(OpenSSL::HMAC.digest("SHA256", key, url)))
       end
   end
 
