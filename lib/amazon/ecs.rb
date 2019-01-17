@@ -32,7 +32,7 @@ module Amazon
   class RequestError < StandardError; end
 
   class Ecs
-    VERSION = '2.5.2'
+    VERSION = '2.6.0'
 
     SERVICE_URLS = {
         :us => 'http://webservices.amazon.com/onca/xml',
