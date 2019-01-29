@@ -22,7 +22,6 @@ Gem::Specification.new do |gem|
  
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       gem.add_runtime_dependency("nokogiri", "~> 1.10")
-      gem.add_runtime_dependency("ruby-hmac", "~> 0.4")
     else
       gem.add_dependency("nokogiri", "~> 1.4")
       gem.add_dependency("ruby-hmac", "~> 0.3")
