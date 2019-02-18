@@ -24,7 +24,6 @@
 require 'net/http'
 require 'nokogiri'
 require 'cgi'
-require 'hmac-sha2'
 require 'base64'
 require 'openssl'
 
