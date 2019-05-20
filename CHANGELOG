@@ -1,3 +1,8 @@
+2.6.0 2019-05-20
+----------------
+* Upgrade nokogiri dependency
+* Remove ruby-hmac support
+
 2.5.0 2016-07-09
 ----------------
 * Turn on debug mode with DEBUG_AMAZON_ECS=1
