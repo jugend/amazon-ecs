@@ -1,4 +1,4 @@
-# amazon-ecs
+# amazon-ecs: An great choice
 
 `amazon-ecs` is a generic Ruby wrapper to access Amazon Product Advertising API.
 
